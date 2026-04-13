@@ -1,0 +1,504 @@
+
+Copy
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laramys.AI — Business Operations Suite</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0C0C0E;--s1:#131316;--s2:#1A1A1E;--s3:#222227;--s4:#2B2B31;
+  --b1:rgba(255,255,255,0.06);--b2:rgba(255,255,255,0.11);--b3:rgba(255,255,255,0.2);--b4:rgba(255,255,255,0.28);
+  --t1:#EFEDE6;--t2:rgba(239,237,230,0.62);--t3:rgba(239,237,230,0.35);--t4:rgba(239,237,230,0.18);
+  --a:#E8FF47;--a2:#C9E000;--r:14px;--rsm:9px;--rxs:6px;
+}
+html,body{height:100%}
+body{background:var(--bg);color:var(--t1);font-family:'Bricolage Grotesque',system-ui,sans-serif;overflow-x:hidden;font-size:14px;line-height:1.5}
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+ 
+/* SIDEBAR */
+.sb{background:var(--s1);border-right:0.5px solid var(--b1);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sb-top{padding:18px 16px 14px;border-bottom:0.5px solid var(--b1);flex-shrink:0}
+.logo{font-size:17px;font-weight:700;letter-spacing:-0.4px}
+.logo em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--a);font-size:20px}
+.logo-sub{font-size:10px;color:var(--t4);margin-top:4px;letter-spacing:0.6px;text-transform:uppercase}
+.brand-btn{margin:12px 10px;background:rgba(232,255,71,0.07);border:0.5px solid rgba(232,255,71,0.18);border-radius:var(--rsm);padding:10px 12px;cursor:pointer;transition:all 0.15s}
+.brand-btn:hover{background:rgba(232,255,71,0.13)}
+.bb-label{font-size:10px;color:rgba(232,255,71,0.5);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:3px}
+.bb-name{font-size:12.5px;color:var(--a);font-weight:600}
+.bb-name.empty{color:rgba(232,255,71,0.35);font-weight:300;font-style:italic}
+.sb-section{padding:10px 14px 4px;font-size:9.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--t4)}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;margin:1px 6px;border-radius:var(--rxs);cursor:pointer;transition:all 0.12s;border:0.5px solid transparent}
+.nav-item:hover{background:var(--s2);border-color:var(--b1)}
+.nav-item.on{background:var(--s3);border-color:var(--b2)}
+.ni-ic{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;background:var(--s2)}
+.nav-item.on .ni-ic{background:var(--s4)}
+.ni-txt{font-size:12.5px;color:var(--t2);flex:1}
+.nav-item.on .ni-txt{color:var(--t1);font-weight:500}
+.ni-badge{font-size:9px;background:var(--a);color:#0C0C0E;padding:2px 5px;border-radius:3px;font-weight:700}
+.sb-footer{margin-top:auto;padding:12px 14px;border-top:0.5px solid var(--b1);flex-shrink:0}
+.sb-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.ss-item{background:var(--s2);border-radius:var(--rxs);padding:7px 8px;text-align:center}
+.ss-n{font-size:16px;font-weight:700;color:var(--t1);line-height:1;font-family:'Instrument Serif',serif}
+.ss-l{font-size:9px;color:var(--t4);margin-top:2px}
+.live-row{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:11px;color:var(--t3)}
+.live-dot{width:5px;height:5px;border-radius:50%;background:#4ADE80;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+ 
+/* MAIN */
+.main{display:flex;flex-direction:column;min-height:100vh}
+.topbar{padding:13px 22px;border-bottom:0.5px solid var(--b1);display:flex;align-items:center;justify-content:space-between;background:var(--s1);position:sticky;top:0;z-index:10;flex-shrink:0}
+.tb-left{display:flex;align-items:center;gap:12px}
+.tb-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.tb-name{font-size:15px;font-weight:600;letter-spacing:-0.3px}
+.tb-sub{font-size:11.5px;color:var(--t3);font-weight:300}
+.tb-right{display:flex;align-items:center;gap:8px}
+.ai-badge{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:5px 11px;border-radius:20px;border:0.5px solid rgba(74,222,128,0.25);color:#4ADE80;background:rgba(74,222,128,0.07)}
+.brand-badge{font-size:11px;font-weight:600;color:var(--a);background:rgba(232,255,71,0.08);border:0.5px solid rgba(232,255,71,0.2);padding:5px 11px;border-radius:20px;display:none}
+ 
+/* CONTENT AREA */
+.content{display:grid;grid-template-columns:1fr 1fr;flex:1;overflow:hidden}
+ 
+/* INPUT */
+.inp{padding:22px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;border-right:0.5px solid var(--b1)}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fl{font-size:10px;font-weight:500;letter-spacing:0.9px;text-transform:uppercase;color:var(--t3)}
+.fi{width:100%;background:var(--s2);border:0.5px solid var(--b2);border-radius:var(--rsm);color:var(--t1);font-family:'Bricolage Grotesque',sans-serif;font-size:13.5px;font-weight:300;padding:10px 13px;outline:none;transition:border-color 0.15s;line-height:1.55;resize:vertical}
+.fi:focus{border-color:var(--b4)}
+.fi::placeholder{color:var(--t4)}
+select.fi{cursor:pointer}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.run-btn{width:100%;background:var(--a);color:#0C0C0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;padding:13px 20px;border-radius:var(--rsm);border:none;cursor:pointer;transition:all 0.16s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;letter-spacing:0.2px}
+.run-btn:hover{background:var(--a2);transform:translateY(-1px)}
+.run-btn:disabled{opacity:0.35;cursor:not-allowed;transform:none}
+ 
+/* OUTPUT */
+.out-panel{padding:22px;display:flex;flex-direction:column;gap:0;overflow:hidden}
+.out-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-shrink:0}
+.out-label{font-size:10px;font-weight:500;letter-spacing:0.9px;text-transform:uppercase;color:var(--t3);display:flex;align-items:center;gap:7px}
+.out-dot{width:6px;height:6px;border-radius:50%;background:var(--t4);flex-shrink:0}
+.out-dot.live{background:#4ADE80;animation:pulse 1.2s infinite}
+.char-ct{font-size:10px;color:var(--t4)}
+.out-body{flex:1;background:var(--s2);border:0.5px solid var(--b1);border-radius:var(--r);padding:18px;font-size:13px;line-height:1.9;color:var(--t1);font-weight:300;overflow-y:auto;white-space:pre-wrap;word-wrap:break-word;min-height:0}
+.out-body.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--t4);font-size:12.5px;text-align:center}
+.empty-ic{font-size:28px;opacity:0.25}
+.out-actions{display:flex;gap:7px;margin-top:10px;flex-shrink:0}
+.oa{flex:1;background:transparent;border:0.5px solid var(--b2);border-radius:var(--rxs);color:var(--t3);font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:500;padding:9px 10px;cursor:pointer;transition:all 0.13s;text-align:center}
+.oa:hover{border-color:var(--b3);color:var(--t1);background:var(--s2)}
+.oa.accent{border-color:rgba(232,255,71,0.25);color:var(--a);background:rgba(232,255,71,0.06)}
+.oa.accent:hover{background:rgba(232,255,71,0.12)}
+ 
+/* FULL PANELS */
+.full-panel{display:none;padding:28px;grid-column:1/-1;overflow-y:auto}
+.full-panel.show{display:block}
+.panel-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.panel-title{font-family:'Instrument Serif',serif;font-size:24px;font-style:italic}
+.back-btn{background:transparent;border:0.5px solid var(--b2);border-radius:var(--rxs);color:var(--t2);font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:500;padding:8px 14px;cursor:pointer;transition:all 0.13s}
+.back-btn:hover{border-color:var(--b3);color:var(--t1)}
+ 
+/* BRAND PANEL */
+.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.brand-form{display:flex;flex-direction:column;gap:14px}
+.save-brand{width:100%;background:var(--a);color:#0C0C0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;padding:13px;border-radius:var(--rsm);border:none;cursor:pointer;transition:all 0.15s;margin-top:6px}
+.save-brand:hover{background:var(--a2)}
+.brand-preview{background:var(--s2);border:0.5px solid var(--b2);border-radius:var(--r);padding:22px}
+.bp-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--t4);margin-bottom:16px}
+.bp-item{display:flex;gap:12px;padding:12px 0;border-bottom:0.5px solid var(--b1)}
+.bp-item:last-child{border-bottom:none}
+.bp-ic{font-size:14px;flex-shrink:0;margin-top:1px}
+.bp-name{font-size:13px;font-weight:500;margin-bottom:3px}
+.bp-desc{font-size:12px;color:var(--t3);font-weight:300;line-height:1.5}
+ 
+/* HISTORY */
+.hist-empty{text-align:center;padding:60px;color:var(--t4);font-style:italic;font-size:14px}
+.hist-item{background:var(--s2);border:0.5px solid var(--b1);border-radius:var(--r);padding:16px;margin-bottom:8px;cursor:pointer;transition:all 0.13s}
+.hist-item:hover{border-color:var(--b2);background:var(--s3)}
+.hi-meta{display:flex;justify-content:space-between;margin-bottom:8px}
+.hi-tool{font-size:12px;color:var(--t2);font-weight:500}
+.hi-time{font-size:11px;color:var(--t4)}
+.hi-prev{font-size:12.5px;color:var(--t2);line-height:1.6;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+ 
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+ 
+@media(max-width:800px){
+  .layout{grid-template-columns:1fr}
+  .sb{display:none}
+  .content{grid-template-columns:1fr}
+  .out-panel{display:none}
+  .brand-grid{grid-template-columns:1fr}
+  .fr{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+ 
+<div class="layout">
+ 
+<!-- SIDEBAR -->
+<div class="sb">
+  <div class="sb-top">
+    <div class="logo">Laramys<em>.</em>AI</div>
+    <div class="logo-sub">Business Operations Suite</div>
+  </div>
+  <div class="brand-btn" onclick="showBrand()">
+    <div class="bb-label">Your brand</div>
+    <div class="bb-name empty" id="brandName">Set up your brand →</div>
+  </div>
+  <div class="sb-section">Generate</div>
+  <div id="navList"></div>
+  <div class="sb-section" style="margin-top:4px">Manage</div>
+  <div class="nav-item" onclick="showHistory()">
+    <div class="ni-ic">🗂</div>
+    <div class="ni-txt">Saved outputs</div>
+    <div class="ni-badge" id="savedBadge" style="display:none">0</div>
+  </div>
+  <div class="sb-footer">
+    <div class="sb-stats">
+      <div class="ss-item"><div class="ss-n" id="sc1">0</div><div class="ss-l">Generated</div></div>
+      <div class="ss-item"><div class="ss-n" id="sc2">0</div><div class="ss-l">Saved</div></div>
+      <div class="ss-item"><div class="ss-n">10</div><div class="ss-l">Tools</div></div>
+    </div>
+    <div class="live-row"><div class="live-dot"></div>Claude AI — live</div>
+  </div>
+</div>
+ 
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="tb-left">
+      <div class="tb-ic" id="tbIc"></div>
+      <div>
+        <div class="tb-name" id="tbName"></div>
+        <div class="tb-sub" id="tbSub"></div>
+      </div>
+    </div>
+    <div class="tb-right">
+      <div class="ai-badge"><div class="live-dot"></div>AI ready</div>
+      <div class="brand-badge" id="bbadge"></div>
+    </div>
+  </div>
+ 
+  <!-- TOOL BODY -->
+  <div class="content" id="contentGrid">
+    <div class="inp" id="inp"></div>
+    <div class="out-panel" id="outPanel">
+      <div class="out-top">
+        <div class="out-label"><div class="out-dot" id="odot"></div><span id="olabel">Output</span></div>
+        <div class="char-ct" id="ccount"></div>
+      </div>
+      <div class="out-body empty" id="outbody">
+        <div class="empty-ic">✦</div>
+        <div>Fill in the fields and generate.<br>Your output appears here.</div>
+      </div>
+      <div class="out-actions">
+        <button class="oa accent" onclick="saveOut()">Save output</button>
+        <button class="oa" onclick="copyOut()">Copy</button>
+        <button class="oa" onclick="clearOut()">Clear</button>
+      </div>
+    </div>
+ 
+    <!-- HISTORY PANEL -->
+    <div class="full-panel" id="histPanel">
+      <div class="panel-hd">
+        <div class="panel-title">Saved outputs</div>
+        <button class="back-btn" onclick="backToTool()">← Back to tools</button>
+      </div>
+      <div id="histList"></div>
+    </div>
+ 
+    <!-- BRAND PANEL -->
+    <div class="full-panel" id="brandPanel">
+      <div class="panel-hd">
+        <div class="panel-title">Brand settings</div>
+        <button class="back-btn" onclick="backToTool()">← Back to tools</button>
+      </div>
+      <div class="brand-grid">
+        <div class="brand-form">
+          <div class="fg"><label class="fl">Business name</label><input class="fi" id="b_name" placeholder="e.g. Davies Plumbing Ltd" type="text"></div>
+          <div class="fg"><label class="fl">Industry / trade</label><input class="fi" id="b_ind" placeholder="e.g. plumbing, estate agency, roofing" type="text"></div>
+          <div class="fg"><label class="fl">Tone of voice</label>
+            <select class="fi" id="b_tone">
+              <option value="">Choose a tone...</option>
+              <option>professional and warm</option>
+              <option>confident and direct</option>
+              <option>friendly and approachable</option>
+              <option>formal and authoritative</option>
+              <option>relaxed and human</option>
+            </select>
+          </div>
+          <div class="fg"><label class="fl">Tagline (optional)</label><input class="fi" id="b_tag" placeholder="e.g. Quality work, every time" type="text"></div>
+          <button class="save-brand" onclick="saveBrand()">Save brand settings</button>
+        </div>
+        <div class="brand-preview">
+          <div class="bp-label">What this unlocks</div>
+          <div class="bp-item"><div class="bp-ic">✦</div><div><div class="bp-name">Auto-branded outputs</div><div class="bp-desc">Your company name in every document — no retyping</div></div></div>
+          <div class="bp-item"><div class="bp-ic">✦</div><div><div class="bp-name">Industry-tuned language</div><div class="bp-desc">The AI speaks your sector's language automatically</div></div></div>
+          <div class="bp-item"><div class="bp-ic">✦</div><div><div class="bp-name">Consistent tone</div><div class="bp-desc">Every output sounds like you — every single time</div></div></div>
+          <div class="bp-item"><div class="bp-ic">✦</div><div><div class="bp-name">Applies to all 10 tools</div><div class="bp-desc">Quote, response, brief, report — all branded</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+ 
+<script>
+const TOOLS=[
+{id:'quote',n:'Quote generator',s:'Professional proposals in seconds',ic:'📄',bg:'rgba(232,255,71,0.1)',
+f:[{id:'biz',l:'Your business name',p:'e.g. Davies Roofing Ltd',t:'i'},{id:'client',l:'Client name',p:'e.g. Mr & Mrs Thompson',t:'i'},{id:'service',l:'Service / project',p:'e.g. Full roof replacement, 3-bed semi',t:'ta',r:2},{id:'scope',l:'Scope of works',p:'e.g. Strip tiles, new felt, battens, ridge work, waste removal...',t:'ta',r:3},{id:'price',l:'Quote value (£)',p:'e.g. 4500',t:'i'},{id:'tl',l:'Estimated timeline',p:'e.g. 2–3 days',t:'i'}],
+sys:`You are an elite business proposal writer. Create a polished, persuasive, client-ready quote. Use clean section titles (no markdown hashes). Sections: Overview, Scope of Works, What's Included, Your Investment, Estimated Timeline, Why Choose Us, Terms & Next Steps. Tone: professional but warm. British English. Max 420 words. End with a clear call to action.`,
+p:(f,b)=>`Business: ${b.name||f.biz||'[Business]'}\nTone: ${b.tone||'professional and warm'}\nIndustry: ${b.ind||'trades'}\nClient: ${f.client||'[Client]'}\nService: ${f.service||'[Service]'}\nScope: ${f.scope||'[Scope]'}\nValue: £${f.price||'TBC'}\nTimeline: ${f.tl||'TBC'}\n\nWrite the complete quote document, ready to send.`},
+ 
+{id:'response',n:'Customer response',s:'Perfect replies to any message',ic:'💬',bg:'rgba(255,184,0,0.1)',
+f:[{id:'biz',l:'Your business',p:'e.g. Premier Plumbing Ltd',t:'i'},{id:'plat',l:'Platform',p:'e.g. Google Reviews, email, Facebook',t:'i'},{id:'type',l:'Type of message',p:'e.g. 1-star review, complaint, enquiry',t:'i'},{id:'msg',l:'Customer message or review',p:'Paste the full message here...',t:'ta',r:4},{id:'ctx',l:'Your context (optional)',p:'e.g. Job completed correctly, customer changed mind after payment...',t:'ta',r:2}],
+sys:`You are a senior customer relations expert. Write professional, empathetic, brand-safe responses. For negative reviews: acknowledge warmly, address the point, invite offline resolution. Never argue. Always professional. British English.`,
+p:(f,b)=>`Business: ${b.name||f.biz}\nTone: ${b.tone||'professional and warm'}\nPlatform: ${f.plat}\nType: ${f.type}\nMessage: "${f.msg}"\nContext: ${f.ctx||'none'}\n\nWrite the full response, ready to post or send.`},
+ 
+{id:'brief',n:'Job brief builder',s:'Rough notes into clear project docs',ic:'📋',bg:'rgba(0,201,167,0.1)',
+f:[{id:'co',l:'Your company',p:'e.g. Premier Groundworks Ltd',t:'i'},{id:'cl',l:'Client name',p:'e.g. Mr & Mrs Harris',t:'i'},{id:'jt',l:'Job type',p:'e.g. Block paving driveway, full rewire',t:'i'},{id:'notes',l:'Raw notes from site visit or call',p:'Dump everything here — rough is fine...',t:'ta',r:5},{id:'start',l:'Estimated start date',p:'e.g. Week of 5th May',t:'i'}],
+sys:`You are an expert project coordinator. Transform rough notes into a polished job brief. Sections: Project Overview, Client Details, Full Scope of Work (bulleted), Materials & Specifications, Access & Site Notes, Timeline, Special Considerations, Sign-off section. British English.`,
+p:(f,b)=>`Company: ${b.name||f.co}\nClient: ${f.cl}\nJob type: ${f.jt}\nRaw notes: ${f.notes}\nStart: ${f.start||'TBC'}\n\nGenerate the complete job brief.`},
+ 
+{id:'report',n:'Report summariser',s:'Raw data into executive summaries',ic:'📊',bg:'rgba(124,110,245,0.1)',
+f:[{id:'org',l:'Business / team',p:'e.g. Sales Team, Davies Group',t:'i'},{id:'per',l:'Report period',p:'e.g. Week ending 12 May 2025',t:'i'},{id:'aud',l:'Audience',p:'e.g. MD, board, department head',t:'i'},{id:'data',l:'Raw data, notes or figures',p:'Paste anything — KPIs, bullet points, numbers...',t:'ta',r:5},{id:'flags',l:'Highlights or concerns',p:'e.g. Sales up 18%, concern about delays',t:'ta',r:2}],
+sys:`You are a senior business analyst. Transform raw data into a polished executive report. Sections: Executive Summary (3–4 sentences), Key Highlights (bullets), Performance vs Goals, Challenges & Actions, Looking Ahead. Confident, concise, board-ready. British English.`,
+p:(f,b)=>`Business: ${b.name||f.org}\nPeriod: ${f.per}\nAudience: ${f.aud}\nData: ${f.data}\nFlags: ${f.flags||'none'}\n\nGenerate the full executive summary.`},
+ 
+{id:'outreach',n:'Cold outreach writer',s:'Emails that land meetings',ic:'✉️',bg:'rgba(59,158,255,0.1)',
+f:[{id:'sndr',l:'Your name & company',p:'e.g. Will, Laramys Labs',t:'i'},{id:'pros',l:'Prospect type',p:'e.g. roofing company owner, estate agent',t:'i'},{id:'pain',l:'Their specific pain point',p:'e.g. spending evenings writing quotes',t:'i'},{id:'offer',l:'Your offer',p:'e.g. AI tool that writes quotes in 10 seconds',t:'i'},{id:'cta',l:'Call to action',p:'e.g. 15-min call, free demo',t:'i'}],
+sys:`You are a world-class B2B copywriter. Write cold outreach emails that get replies. Pain-first. No fluff. No "I hope this finds you well". Lead with a specific insight into their world. Under 130 words. Subject line + body. British English.`,
+p:(f,b)=>`Sender: ${b.name||f.sndr}\nProspect: ${f.pros}\nPain: ${f.pain}\nOffer: ${f.offer}\nCTA: ${f.cta}\n\nWrite the subject line and email body.`},
+ 
+{id:'onboard',n:'Onboarding doc',s:'Welcome packs that set people up',ic:'👋',bg:'rgba(107,203,95,0.1)',
+f:[{id:'co',l:'Company name',p:'e.g. Smith & Sons Ltd',t:'i'},{id:'type',l:'Type',p:'e.g. new client, new employee, new contractor',t:'i'},{id:'person',l:'Who is being onboarded',p:'e.g. Sarah — new Office Manager',t:'i'},{id:'det',l:'Key details',p:'e.g. start date, role, tools, first week plan...',t:'ta',r:4},{id:'tone',l:'Tone',p:'e.g. warm and welcoming, professional',t:'i'}],
+sys:`You are an HR and operations expert. Create a polished onboarding document. Sections: Welcome message, About the business, Role overview, First week steps, Key contacts, Tools & systems, Important notes, Next steps. Warm, structured, professional. British English.`,
+p:(f,b)=>`Company: ${b.name||f.co}\nType: ${f.type}\nPerson: ${f.person}\nDetails: ${f.det}\nTone: ${f.tone||b.tone||'warm and welcoming'}\n\nGenerate the full onboarding document.`},
+ 
+{id:'jobad',n:'Job ad writer',s:'Attract the right people',ic:'📢',bg:'rgba(232,86,122,0.1)',
+f:[{id:'co',l:'Company name',p:'e.g. Davies Electrical',t:'i'},{id:'role',l:'Job title',p:'e.g. Experienced Electrician',t:'i'},{id:'loc',l:'Location',p:'e.g. Barnstaple, Devon',t:'i'},{id:'sal',l:'Salary / rate',p:'e.g. £35–40k / £25/hr CIS',t:'i'},{id:'det',l:'Role details & requirements',p:'e.g. 3+ yrs experience, domestic & commercial...',t:'ta',r:4}],
+sys:`You are a specialist recruitment copywriter. Write job ads that attract quality candidates. Lead with what makes this role great. List real requirements. Show company culture briefly. Engaging, honest, specific. British English. Under 320 words.`,
+p:(f,b)=>`Company: ${b.name||f.co}\nRole: ${f.role}\nLocation: ${f.loc}\nSalary: ${f.sal}\nDetails: ${f.det}\n\nWrite a compelling job advert.`},
+ 
+{id:'sop',n:'SOP & training doc',s:'Processes your team can follow',ic:'📘',bg:'rgba(245,166,35,0.1)',
+f:[{id:'co',l:'Company name',p:'e.g. Premier Drainage Ltd',t:'i'},{id:'proc',l:'Process name',p:'e.g. How to handle a new customer enquiry',t:'i'},{id:'role',l:'Who is this for',p:'e.g. office team, new starters',t:'i'},{id:'steps',l:'Rough steps or notes',p:'e.g. Answer phone, take name + number, check diary...',t:'ta',r:5}],
+sys:`You are a business operations expert. Turn rough notes into a clear Standard Operating Procedure. Sections: Purpose, Who this applies to, Step-by-step instructions (numbered), Key rules, Common mistakes to avoid, Sign-off. Clear enough for a new starter. British English.`,
+p:(f,b)=>`Company: ${b.name||f.co}\nProcess: ${f.proc}\nFor: ${f.role}\nNotes: ${f.steps}\n\nGenerate the full SOP document.`},
+ 
+{id:'social',n:'Social media content',s:'Posts that stop the scroll',ic:'📱',bg:'rgba(59,158,255,0.1)',
+f:[{id:'biz',l:'Business name',p:'e.g. Davies Roofing',t:'i'},{id:'plat',l:'Platform',p:'e.g. Facebook, Instagram, LinkedIn',t:'i'},{id:'topic',l:'What are you posting about',p:'e.g. just finished a slate roof in Barnstaple',t:'ta',r:2},{id:'goal',l:'Goal of this post',p:'e.g. show expertise, get enquiries, build trust',t:'i'},{id:'num',l:'Number of posts',p:'e.g. 3',t:'i'}],
+sys:`You are a social media expert for local and trade businesses. Write posts that feel genuinely human. Specific over generic. Tell the story. Include a natural call to action. Relevant hashtags. British English.`,
+p:(f,b)=>`Business: ${b.name||f.biz}\nTone: ${b.tone||'authentic and proud'}\nPlatform: ${f.plat}\nTopic: ${f.topic}\nGoal: ${f.goal}\nPosts needed: ${f.num||3}\n\nWrite the posts, clearly separated, ready to copy and paste.`},
+ 
+{id:'contract',n:'T&Cs / contract writer',s:'Terms that protect your business',ic:'📝',bg:'rgba(124,110,245,0.1)',
+f:[{id:'co',l:'Company name',p:'e.g. Smith & Sons Ltd',t:'i'},{id:'svc',l:'Service type',p:'e.g. roofing, web design, landscaping',t:'i'},{id:'pts',l:'Key terms to include',p:'e.g. 50% deposit upfront, 14-day payment terms...',t:'ta',r:4},{id:'style',l:'Style preference',p:'e.g. plain English, formal',t:'i'}],
+sys:`You are a legal document specialist. Create professional terms and conditions. Sections: Parties, Services, Payment Terms, Cancellation, Liability, Dispute Resolution, Governing Law (England & Wales). Plain English. Include a note recommending legal review. British English.`,
+p:(f,b)=>`Company: ${b.name||f.co}\nService: ${f.svc}\nKey terms: ${f.pts}\nStyle: ${f.style||'plain English'}\n\nGenerate the full T&Cs document.`},
+];
+ 
+let cur=0, outTxt='', generated=0, saved=[], brand={name:'',ind:'',tone:'',tag:''}, mode='tool';
+ 
+function init(){
+  buildNav();
+  setTool(0);
+}
+ 
+function buildNav(){
+  document.getElementById('navList').innerHTML = T.map((t,i)=>
+    `<div class="nav-item${i===cur&&mode==='tool'?' on':''}" onclick="setTool(${i})">
+      <div class="ni-ic">${t.ic}</div>
+      <div class="ni-txt">${t.n}</div>
+    </div>`
+  ).join('');
+}
+ 
+const T = TOOLS;
+ 
+function setTool(i){
+  mode='tool'; cur=i;
+  document.getElementById('histPanel').classList.remove('show');
+  document.getElementById('brandPanel').classList.remove('show');
+  document.getElementById('inp').style.display='flex';
+  document.getElementById('outPanel').style.display='flex';
+  const t=T[i];
+  document.getElementById('tbIc').textContent=t.ic;
+  document.getElementById('tbIc').style.background=t.bg;
+  document.getElementById('tbName').textContent=t.n;
+  document.getElementById('tbSub').textContent=t.s;
+  renderInp();
+  clearOut();
+  buildNav();
+}
+ 
+function renderInp(){
+  const t=T[cur];
+  let h='';
+  for(let i=0;i<t.f.length;i++){
+    const f=t.f[i];
+    if(f.t==='i' && i+1<t.f.length && t.f[i+1].t==='i'){
+      const f2=t.f[i+1];
+      h+=`<div class="fr">
+        <div class="fg"><label class="fl">${f.l}</label><input class="fi" id="f_${f.id}" placeholder="${f.p}" type="text"></div>
+        <div class="fg"><label class="fl">${f2.l}</label><input class="fi" id="f_${f2.id}" placeholder="${f2.p}" type="text"></div>
+      </div>`;
+      i++;
+    } else if(f.t==='i'){
+      h+=`<div class="fg"><label class="fl">${f.l}</label><input class="fi" id="f_${f.id}" placeholder="${f.p}" type="text"></div>`;
+    } else {
+      h+=`<div class="fg"><label class="fl">${f.l}</label><textarea class="fi" id="f_${f.id}" placeholder="${f.p}" rows="${f.r||3}"></textarea></div>`;
+    }
+  }
+  h+=`<button class="run-btn" id="runBtn" onclick="runTool()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    Generate with AI
+  </button>`;
+  document.getElementById('inp').innerHTML=h;
+}
+ 
+async function runTool(){
+  const t=T[cur];
+  const fv={};
+  t.f.forEach(f=>{const el=document.getElementById('f_'+f.id);if(el)fv[f.id]=el.value.trim();});
+  const btn=document.getElementById('runBtn');
+  btn.disabled=true;
+  btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 0.9s linear infinite"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Generating...';
+  const dot=document.getElementById('odot');
+  dot.classList.add('live');
+  document.getElementById('olabel').textContent='Generating...';
+  document.getElementById('ccount').textContent='';
+  const ob=document.getElementById('outbody');
+  ob.classList.remove('empty');
+  ob.textContent='';
+  outTxt='';
+  const sysTxt=t.sys+(brand.name?`\n\nBrand: Company name: ${brand.name}. Industry: ${brand.ind||'general'}. Tone: ${brand.tone||'professional'}. Tagline: ${brand.tag||'n/a'}.`:'');
+  try{
+    const res=await fetch('/.netlify/functions/generate',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({system:sysTxt, prompt:t.p(fv,brand)})
+    });
+    const data=await res.json();
+    outTxt=data.text||'Something went wrong. Please try again.';
+    ob.textContent=outTxt;
+    generated++;
+    document.getElementById('sc1').textContent=generated;
+    document.getElementById('ccount').textContent=outTxt.length+' chars';
+  }catch(e){
+    ob.textContent='Error: '+e.message;
+  }
+  dot.classList.remove('live');
+  document.getElementById('olabel').textContent='Output — ready';
+  btn.disabled=false;
+  btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate again';
+}
+ 
+function saveOut(){
+  if(!outTxt)return;
+  const t=T[cur];
+  saved.unshift({tool:t.n,ic:t.ic,txt:outTxt,time:new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}),date:new Date().toLocaleDateString('en-GB')});
+  document.getElementById('sc2').textContent=saved.length;
+  const sb=document.getElementById('savedBadge');
+  sb.textContent=saved.length;sb.style.display='block';
+  const btn=event.target;
+  btn.textContent='Saved ✓';
+  setTimeout(()=>btn.textContent='Save output',2000);
+}
+ 
+function copyOut(){
+  if(!outTxt)return;
+  navigator.clipboard.writeText(outTxt).then(()=>{
+    const btn=event.target;btn.textContent='Copied!';
+    setTimeout(()=>btn.textContent='Copy',2000);
+  });
+}
+ 
+function clearOut(){
+  outTxt='';
+  const ob=document.getElementById('outbody');
+  ob.innerHTML='<div class="empty-ic">✦</div><div>Fill in the fields and generate.<br>Your output appears here.</div>';
+  ob.classList.add('empty');
+  document.getElementById('odot').classList.remove('live');
+  document.getElementById('olabel').textContent='Output';
+  document.getElementById('ccount').textContent='';
+  const btn=document.getElementById('runBtn');
+  if(btn){btn.disabled=false;btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate with AI';}
+}
+ 
+function showHistory(){
+  mode='hist';
+  document.getElementById('histPanel').classList.add('show');
+  document.getElementById('brandPanel').classList.remove('show');
+  document.getElementById('inp').style.display='none';
+  document.getElementById('outPanel').style.display='none';
+  document.getElementById('tbIc').textContent='🗂';
+  document.getElementById('tbIc').style.background='rgba(255,255,255,0.06)';
+  document.getElementById('tbName').textContent='Saved outputs';
+  document.getElementById('tbSub').textContent="Everything you've generated and saved";
+  const list=document.getElementById('histList');
+  if(!saved.length){list.innerHTML='<div class="hist-empty">Nothing saved yet. Generate something and hit Save output.</div>';buildNav();return;}
+  list.innerHTML=saved.map((s,i)=>`
+    <div class="hist-item" onclick="restoreItem(${i})">
+      <div class="hi-meta"><div class="hi-tool">${s.ic} ${s.tool}</div><div class="hi-time">${s.date} · ${s.time}</div></div>
+      <div class="hi-prev">${s.txt.replace(/</g,'&lt;').substring(0,200)}...</div>
+    </div>`).join('');
+  buildNav();
+}
+ 
+function restoreItem(i){
+  const s=saved[i];
+  const ti=T.findIndex(t=>t.n===s.tool);
+  if(ti>=0)setTool(ti);
+  setTimeout(()=>{
+    outTxt=s.txt;
+    const ob=document.getElementById('outbody');
+    ob.textContent=outTxt;
+    ob.classList.remove('empty');
+    document.getElementById('olabel').textContent='Restored';
+    document.getElementById('ccount').textContent=outTxt.length+' chars';
+  },60);
+}
+ 
+function backToTool(){setTool(cur);}
+ 
+function showBrand(){
+  mode='brand';
+  document.getElementById('brandPanel').classList.add('show');
+  document.getElementById('histPanel').classList.remove('show');
+  document.getElementById('inp').style.display='none';
+  document.getElementById('outPanel').style.display='none';
+  document.getElementById('tbIc').textContent='⚙️';
+  document.getElementById('tbIc').style.background='rgba(255,255,255,0.06)';
+  document.getElementById('tbName').textContent='Brand settings';
+  document.getElementById('tbSub').textContent='Set once — applied to every tool automatically';
+  if(brand.name)document.getElementById('b_name').value=brand.name;
+  if(brand.ind)document.getElementById('b_ind').value=brand.ind;
+  if(brand.tone)document.getElementById('b_tone').value=brand.tone;
+  if(brand.tag)document.getElementById('b_tag').value=brand.tag;
+  buildNav();
+}
+ 
+function saveBrand(){
+  brand.name=document.getElementById('b_name').value.trim();
+  brand.ind=document.getElementById('b_ind').value.trim();
+  brand.tone=document.getElementById('b_tone').value;
+  brand.tag=document.getElementById('b_tag').value.trim();
+  const el=document.getElementById('brandName');
+  if(brand.name){el.textContent=brand.name;el.classList.remove('empty');}
+  const bb=document.getElementById('bbadge');
+  if(brand.name){bb.textContent=brand.name;bb.style.display='block';}
+  const btn=event.target;
+  btn.textContent='Saved!';btn.style.background='#4ADE80';
+  setTimeout(()=>{btn.textContent='Save brand settings';btn.style.background='';setTool(cur);},1600);
+}
+ 
+init();
+</script>
+</body>
+</html>
+ 
