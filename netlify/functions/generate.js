@@ -4,9 +4,18 @@ exports.handler = async function(event) {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
+
   try {
     const { system, prompt } = JSON.parse(event.body);
     const apiKey = process.env.ANTHROPIC_API_KEY;
+
+    if (!apiKey) {
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({ text: 'ERROR: API key not found in environment variables' })
+      };
+    }
 
     const result = await new Promise((resolve, reject) => {
       const body = JSON.stringify({
@@ -31,7 +40,13 @@ exports.handler = async function(event) {
       const req = https.request(options, (res) => {
         let data = '';
         res.on('data', chunk => data += chunk);
-        res.on('end', () => resolve(JSON.parse(data)));
+        res.on('end', () => {
+          try {
+            resolve(JSON.parse(data));
+          } catch(e) {
+            reject(new Error('Failed to parse response: ' + data));
+          }
+        });
       });
 
       req.on('error', reject);
@@ -39,16 +54,26 @@ exports.handler = async function(event) {
       req.end();
     });
 
-    const text = result.content?.[0]?.text || 'Something went wrong.';
+    if (result.error) {
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({ text: 'API Error: ' + result.error.message })
+      };
+    }
+
+    const text = result.content?.[0]?.text || 'No content returned';
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({ text })
     };
+
   } catch (err) {
     return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message })
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ text: 'Function error: ' + err.message })
     };
   }
 };
