@@ -5,132 +5,814 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Laramys.AI — Business Operations Suite</title>
+<meta name="theme-color" content="#0C0C0E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Laramys.AI">
+<meta name="description" content="17 AI-powered business tools for UK trades and SMEs — quotes, invoices, job briefs, social content and more. Powered by Claude AI.">
+<link rel="canonical" href="https://laramysai.netlify.app/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://laramysai.netlify.app/">
+<meta property="og:title" content="Laramys.AI — Business Operations Suite">
+<meta property="og:description" content="17 AI-powered business tools for UK trades and SMEs. Write quotes, invoices, job briefs, social posts and more in seconds.">
+<meta property="og:image" content="https://laramysai.netlify.app/icon-512.png">
+<!-- Twitter/X -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laramys.AI — Business Operations Suite">
+<meta name="twitter:description" content="17 AI-powered business tools for UK trades and SMEs. Quotes, invoices, briefs and more in seconds.">
+<meta name="twitter:image" content="https://laramysai.netlify.app/icon-512.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
 <style>
+/* ============================================
+   LARAMYS.AI v2 — DESIGN SYSTEM TOKENS
+   ============================================ */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0C0C0E;--s1:#131316;--s2:#1A1A1E;--s3:#222227;--s4:#2B2B31;
-  --b1:rgba(255,255,255,0.06);--b2:rgba(255,255,255,0.11);--b3:rgba(255,255,255,0.2);--b4:rgba(255,255,255,0.28);
-  --t1:#EFEDE6;--t2:rgba(239,237,230,0.62);--t3:rgba(239,237,230,0.35);--t4:rgba(239,237,230,0.18);
-  --a:#E8FF47;--a2:#C9E000;--r:14px;--rsm:9px;--rxs:6px;
+  /* Backgrounds */
+  --bg:#0C0C0E;
+  --s1:#111114;
+  --s2:#18181C;
+  --s3:#202026;
+  --s4:#2A2A32;
+  --s5:#33333D;
+ 
+  /* Borders */
+  --b1:rgba(255,255,255,0.055);
+  --b2:rgba(255,255,255,0.10);
+  --b3:rgba(255,255,255,0.18);
+  --b4:rgba(255,255,255,0.28);
+ 
+  /* Text */
+  --t1:#F0EDE6;
+  --t2:rgba(240,237,230,0.65);
+  --t3:rgba(240,237,230,0.38);
+  --t4:rgba(240,237,230,0.20);
+ 
+  /* Brand accent */
+  --a:#E8FF47;
+  --a2:#D4EB3A;
+  --a-glow:rgba(232,255,71,0.15);
+  --a-subtle:rgba(232,255,71,0.07);
+ 
+  /* Semantic */
+  --green:#4ADE80;
+  --green-bg:rgba(74,222,128,0.08);
+  --blue:#3B9EFF;
+  --blue-bg:rgba(59,158,255,0.08);
+  --red:#FF6B6B;
+ 
+  /* Radii */
+  --r:16px;
+  --r-md:10px;
+  --r-sm:7px;
+  --r-xs:5px;
+  --r-pill:999px;
+ 
+  /* Shadows */
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.5);
+  --shadow-accent:0 0 20px rgba(232,255,71,0.12);
+ 
+  /* Transitions */
+  --tx:0.14s ease;
+  --tx-md:0.22s ease;
+  --tx-slow:0.35s ease;
+ 
+  /* Layout */
+  --sb-w:228px;
 }
+ 
 html,body{height:100%}
-body{background:var(--bg);color:var(--t1);font-family:'Bricolage Grotesque',system-ui,sans-serif;overflow-x:hidden;font-size:14px;line-height:1.5}
-.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
-.sb{background:var(--s1);border-right:0.5px solid var(--b1);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
-.sb-top{padding:18px 16px 14px;border-bottom:0.5px solid var(--b1);flex-shrink:0}
-.logo{font-size:17px;font-weight:700;letter-spacing:-0.4px}
-.logo em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--a);font-size:20px}
-.logo-sub{font-size:10px;color:var(--t4);margin-top:4px;letter-spacing:0.6px;text-transform:uppercase}
-.brand-btn{margin:12px 10px;background:rgba(232,255,71,0.07);border:0.5px solid rgba(232,255,71,0.18);border-radius:var(--rsm);padding:10px 12px;cursor:pointer;transition:all 0.15s}
-.brand-btn:hover{background:rgba(232,255,71,0.13)}
-.bb-label{font-size:10px;color:rgba(232,255,71,0.5);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:3px}
-.bb-name{font-size:12.5px;color:var(--a);font-weight:600}
-.bb-name.empty{color:rgba(232,255,71,0.35);font-weight:300;font-style:italic}
-.sb-section{padding:10px 14px 4px;font-size:9.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--t4)}
-.nav-item{display:flex;align-items:center;gap:9px;padding:7px 10px;margin:1px 6px;border-radius:var(--rxs);cursor:pointer;transition:all 0.12s;border:0.5px solid transparent}
-.nav-item:hover{background:var(--s2);border-color:var(--b1)}
-.nav-item.on{background:var(--s3);border-color:var(--b2)}
-.ni-ic{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;background:var(--s2)}
+body{
+  background:var(--bg);
+  color:var(--t1);
+  font-family:'Bricolage Grotesque',system-ui,sans-serif;
+  overflow-x:hidden;
+  font-size:14px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+ 
+/* ============================================
+   LAYOUT
+   ============================================ */
+.layout{display:grid;grid-template-columns:var(--sb-w) 1fr;min-height:100vh}
+ 
+/* ============================================
+   SIDEBAR
+   ============================================ */
+.sb{
+  background:var(--s1);
+  border-right:1px solid var(--b1);
+  display:flex;
+  flex-direction:column;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+.sb::-webkit-scrollbar{width:3px}
+.sb::-webkit-scrollbar-track{background:transparent}
+.sb::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+ 
+/* Logo */
+.sb-top{
+  padding:20px 18px 16px;
+  border-bottom:1px solid var(--b1);
+  flex-shrink:0;
+}
+.logo{
+  font-size:17px;
+  font-weight:700;
+  letter-spacing:-0.5px;
+  display:flex;
+  align-items:baseline;
+  gap:1px;
+}
+.logo-word{color:var(--t1)}
+.logo em{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  color:var(--a);
+  font-size:21px;
+}
+.logo-sub{
+  font-size:10px;
+  color:var(--t4);
+  margin-top:5px;
+  letter-spacing:0.7px;
+  text-transform:uppercase;
+  font-weight:400;
+}
+ 
+/* Brand button */
+.brand-btn{
+  margin:10px 10px 4px;
+  background:var(--a-subtle);
+  border:1px solid rgba(232,255,71,0.14);
+  border-radius:var(--r-md);
+  padding:10px 13px;
+  cursor:pointer;
+  transition:background var(--tx), border-color var(--tx), box-shadow var(--tx);
+  text-align:left;
+  width:calc(100% - 20px);
+}
+.brand-btn:hover{
+  background:rgba(232,255,71,0.11);
+  border-color:rgba(232,255,71,0.25);
+  box-shadow:var(--shadow-accent);
+}
+.bb-label{font-size:9.5px;color:rgba(232,255,71,0.45);letter-spacing:0.9px;text-transform:uppercase;margin-bottom:3px;font-weight:500}
+.bb-name{font-size:12.5px;color:var(--a);font-weight:600;transition:color var(--tx)}
+.bb-name.empty{color:rgba(232,255,71,0.32);font-weight:300;font-style:italic}
+ 
+/* Nav sections */
+.sb-section{
+  padding:12px 16px 5px;
+  font-size:9px;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  color:var(--t4);
+  font-weight:600;
+}
+ 
+/* Nav items */
+.nav-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:7px 10px;
+  margin:1px 8px;
+  border-radius:var(--r-sm);
+  cursor:pointer;
+  transition:background var(--tx), border-color var(--tx), color var(--tx);
+  border:1px solid transparent;
+  position:relative;
+}
+.nav-item:hover{
+  background:var(--s2);
+  border-color:var(--b1);
+}
+.nav-item.on{
+  background:var(--s3);
+  border-color:var(--b2);
+}
+.nav-item.on::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:2.5px;
+  height:60%;
+  background:var(--a);
+  border-radius:0 2px 2px 0;
+}
+ 
+/* Nav icon */
+.ni-ic{
+  width:28px;
+  height:28px;
+  border-radius:var(--r-xs);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  background:var(--s3);
+  transition:background var(--tx);
+  overflow:hidden;
+}
 .nav-item.on .ni-ic{background:var(--s4)}
-.ni-txt{font-size:12px;color:var(--t2);flex:1}
+.ni-ic svg{width:14px;height:14px;stroke:var(--t2);flex-shrink:0}
+.nav-item.on .ni-ic svg{stroke:var(--t1)}
+ 
+.ni-txt{font-size:12.5px;color:var(--t2);flex:1;font-weight:400;transition:color var(--tx)}
 .nav-item.on .ni-txt{color:var(--t1);font-weight:500}
-.ni-badge{font-size:9px;background:var(--a);color:#0C0C0E;padding:2px 5px;border-radius:3px;font-weight:700}
-.sb-footer{margin-top:auto;padding:12px 14px;border-top:0.5px solid var(--b1);flex-shrink:0}
-.sb-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-.ss-item{background:var(--s2);border-radius:var(--rxs);padding:7px 8px;text-align:center}
-.ss-n{font-size:15px;font-weight:700;color:var(--t1);line-height:1;font-family:'Instrument Serif',serif}
-.ss-l{font-size:9px;color:var(--t4);margin-top:2px}
-.live-row{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:11px;color:var(--t3)}
-.live-dot{width:5px;height:5px;border-radius:50%;background:#4ADE80;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
-.main{display:flex;flex-direction:column;min-height:100vh}
-.topbar{padding:13px 22px;border-bottom:0.5px solid var(--b1);display:flex;align-items:center;justify-content:space-between;background:var(--s1);position:sticky;top:0;z-index:10;flex-shrink:0}
-.tb-left{display:flex;align-items:center;gap:12px}
-.tb-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.tb-name{font-size:15px;font-weight:600;letter-spacing:-0.3px}
-.tb-sub{font-size:11.5px;color:var(--t3);font-weight:300}
+.nav-item:hover .ni-txt{color:var(--t1)}
+ 
+.ni-badge{
+  font-size:9px;
+  background:var(--a);
+  color:#0C0C0E;
+  padding:2px 6px;
+  border-radius:var(--r-pill);
+  font-weight:700;
+  flex-shrink:0;
+}
+ 
+/* Footer stats */
+.sb-footer{
+  margin-top:auto;
+  padding:14px 12px;
+  border-top:1px solid var(--b1);
+  flex-shrink:0;
+}
+.sb-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:12px}
+.ss-item{
+  background:var(--s2);
+  border:1px solid var(--b1);
+  border-radius:var(--r-xs);
+  padding:8px 6px;
+  text-align:center;
+  transition:background var(--tx);
+}
+.ss-item:hover{background:var(--s3)}
+.ss-n{
+  font-size:16px;
+  font-weight:700;
+  color:var(--t1);
+  line-height:1;
+  font-family:'Instrument Serif',serif;
+}
+.ss-l{font-size:9px;color:var(--t4);margin-top:3px;letter-spacing:0.3px}
+ 
+.live-row{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:11px;
+  color:var(--t3);
+}
+.live-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--green);
+  flex-shrink:0;
+  animation:pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,0.4)}
+  50%{opacity:0.6;box-shadow:0 0 0 4px rgba(74,222,128,0)}
+}
+ 
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.main{display:flex;flex-direction:column;min-height:100vh;background:var(--bg)}
+ 
+/* Top bar */
+.topbar{
+  padding:12px 24px;
+  border-bottom:1px solid var(--b1);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--s1);
+  position:sticky;
+  top:0;
+  z-index:10;
+  flex-shrink:0;
+}
+.tb-left{display:flex;align-items:center;gap:13px}
+.tb-ic{
+  width:40px;
+  height:40px;
+  border-radius:var(--r-sm);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  border:1px solid var(--b1);
+  transition:all var(--tx);
+}
+.tb-ic svg{width:18px;height:18px;stroke:var(--t1)}
+.tb-name{font-size:15px;font-weight:600;letter-spacing:-0.3px;color:var(--t1)}
+.tb-sub{font-size:11.5px;color:var(--t3);font-weight:300;margin-top:1px}
 .tb-right{display:flex;align-items:center;gap:8px}
-.ai-badge{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:5px 11px;border-radius:20px;border:0.5px solid rgba(74,222,128,0.25);color:#4ADE80;background:rgba(74,222,128,0.07)}
-.brand-badge{font-size:11px;font-weight:600;color:var(--a);background:rgba(232,255,71,0.08);border:0.5px solid rgba(232,255,71,0.2);padding:5px 11px;border-radius:20px;display:none}
-.content{display:grid;grid-template-columns:1fr 1fr;flex:1;overflow:hidden}
-.inp{padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;border-right:0.5px solid var(--b1)}
-.fg{display:flex;flex-direction:column;gap:5px}
-.fl{font-size:10px;font-weight:500;letter-spacing:0.9px;text-transform:uppercase;color:var(--t3)}
-.fi{width:100%;background:var(--s2);border:0.5px solid var(--b2);border-radius:var(--rsm);color:var(--t1);font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:300;padding:9px 12px;outline:none;transition:border-color 0.15s;line-height:1.55;resize:vertical}
-.fi:focus{border-color:var(--b4)}
+ 
+.ai-badge{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  font-weight:500;
+  padding:5px 12px;
+  border-radius:var(--r-pill);
+  border:1px solid rgba(74,222,128,0.2);
+  color:var(--green);
+  background:var(--green-bg);
+  letter-spacing:0.1px;
+}
+.brand-badge{
+  font-size:11px;
+  font-weight:600;
+  color:var(--a);
+  background:var(--a-subtle);
+  border:1px solid rgba(232,255,71,0.18);
+  padding:5px 12px;
+  border-radius:var(--r-pill);
+  display:none;
+  letter-spacing:0.1px;
+}
+ 
+/* Content grid */
+.content{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  flex:1;
+  overflow:hidden;
+}
+ 
+/* Input panel */
+.inp{
+  padding:22px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+  border-right:1px solid var(--b1);
+}
+.inp::-webkit-scrollbar{width:3px}
+.inp::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+ 
+/* Form fields */
+.fg{display:flex;flex-direction:column;gap:6px}
+.fl{
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:0.9px;
+  text-transform:uppercase;
+  color:var(--t3);
+}
+.fi{
+  width:100%;
+  background:var(--s2);
+  border:1px solid var(--b2);
+  border-radius:var(--r-sm);
+  color:var(--t1);
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:13px;
+  font-weight:300;
+  padding:9px 13px;
+  outline:none;
+  transition:border-color var(--tx), background var(--tx), box-shadow var(--tx);
+  line-height:1.55;
+  resize:vertical;
+}
+.fi:focus{
+  border-color:var(--b4);
+  background:var(--s3);
+  box-shadow:0 0 0 3px rgba(255,255,255,0.04);
+}
+.fi:hover:not(:focus){border-color:var(--b3)}
 .fi::placeholder{color:var(--t4)}
-select.fi{cursor:pointer}
+select.fi{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(240,237,230,0.35)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.run-btn{width:100%;background:var(--a);color:#0C0C0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;padding:12px 20px;border-radius:var(--rsm);border:none;cursor:pointer;transition:all 0.16s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;letter-spacing:0.2px}
-.run-btn:hover{background:var(--a2);transform:translateY(-1px)}
-.run-btn:disabled{opacity:0.35;cursor:not-allowed;transform:none}
-.out-panel{padding:20px;display:flex;flex-direction:column;gap:0;overflow:hidden}
-.out-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-shrink:0}
-.out-label{font-size:10px;font-weight:500;letter-spacing:0.9px;text-transform:uppercase;color:var(--t3);display:flex;align-items:center;gap:7px}
-.out-dot{width:6px;height:6px;border-radius:50%;background:var(--t4);flex-shrink:0}
-.out-dot.live{background:#4ADE80;animation:pulse 1.2s infinite}
-.edit-hint{font-size:10px;color:var(--t4);font-style:italic;display:none}
-.edit-hint.show{display:block}
-.out-body{flex:1;background:var(--s2);border:0.5px solid var(--b1);border-radius:var(--r);padding:16px;font-size:13px;line-height:1.9;color:var(--t1);font-weight:300;overflow-y:auto;white-space:pre-wrap;word-wrap:break-word;min-height:0;outline:none;transition:border-color 0.2s}
-.out-body[contenteditable="true"]:focus{border-color:var(--b3);background:var(--s3)}
+ 
+/* Generate button */
+.run-btn{
+  width:100%;
+  background:var(--a);
+  color:#0C0C0E;
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:700;
+  font-size:14px;
+  padding:13px 20px;
+  border-radius:var(--r-md);
+  border:none;
+  cursor:pointer;
+  transition:all var(--tx-md);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:4px;
+  letter-spacing:0.1px;
+  position:relative;
+  overflow:hidden;
+}
+.run-btn::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0);
+  transition:background var(--tx);
+}
+.run-btn:hover{
+  background:var(--a2);
+  transform:translateY(-2px);
+  box-shadow:0 6px 24px rgba(232,255,71,0.25);
+}
+.run-btn:active{transform:translateY(0);box-shadow:none}
+.run-btn:disabled{opacity:0.35;cursor:not-allowed;transform:none;box-shadow:none}
+ 
+/* Output panel */
+.out-panel{
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  overflow:hidden;
+  background:var(--bg);
+}
+.out-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+  flex-shrink:0;
+}
+.out-label{
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:0.9px;
+  text-transform:uppercase;
+  color:var(--t3);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.out-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--b3);
+  flex-shrink:0;
+  transition:background var(--tx);
+}
+.out-dot.live{
+  background:var(--green);
+  animation:pulse 1s ease-in-out infinite;
+}
+.edit-hint{font-size:10.5px;color:var(--t4);font-style:italic;display:none}
+.edit-hint.show{display:flex;align-items:center;gap:4px}
+ 
+.out-body{
+  flex:1;
+  background:var(--s1);
+  border:1px solid var(--b1);
+  border-radius:var(--r);
+  padding:18px 20px;
+  font-size:13px;
+  line-height:2.0;
+  color:var(--t1);
+  font-weight:300;
+  overflow-y:auto;
+  white-space:pre-wrap;
+  word-wrap:break-word;
+  min-height:0;
+  outline:none;
+  transition:border-color var(--tx-md), background var(--tx-md), box-shadow var(--tx-md);
+  letter-spacing:0.01em;
+}
+.out-body::-webkit-scrollbar{width:3px}
+.out-body::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+.out-body[contenteditable="true"]:focus{
+  border-color:var(--b3);
+  background:var(--s2);
+  box-shadow:0 0 0 3px rgba(255,255,255,0.03);
+}
 .out-body[contenteditable="true"]:hover{border-color:var(--b2)}
-.out-body.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--t4);font-size:12.5px;text-align:center}
-.empty-ic{font-size:28px;opacity:0.25}
-.out-actions{display:flex;gap:7px;margin-top:10px;flex-shrink:0;flex-wrap:wrap}
-.oa{flex:1;background:transparent;border:0.5px solid var(--b2);border-radius:var(--rxs);color:var(--t3);font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:500;padding:8px 10px;cursor:pointer;transition:all 0.13s;text-align:center;min-width:60px}
-.oa:hover{border-color:var(--b3);color:var(--t1);background:var(--s2)}
-.oa.accent{border-color:rgba(232,255,71,0.25);color:var(--a);background:rgba(232,255,71,0.06)}
-.oa.accent:hover{background:rgba(232,255,71,0.12)}
-.oa.edit-active{border-color:rgba(59,158,255,0.4);color:#3B9EFF;background:rgba(59,158,255,0.08)}
-.full-panel{display:none;padding:24px;grid-column:1/-1;overflow-y:auto}
+.out-body.empty{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  color:var(--t4);
+  font-size:13px;
+  text-align:center;
+  font-weight:300;
+}
+.empty-ic{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  border:1px solid var(--b2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0.5;
+}
+.empty-ic svg{width:18px;height:18px;stroke:var(--t3)}
+ 
+/* Output action buttons */
+.out-actions{
+  display:flex;
+  gap:7px;
+  margin-top:12px;
+  flex-shrink:0;
+  flex-wrap:wrap;
+}
+.oa{
+  flex:1;
+  background:transparent;
+  border:1px solid var(--b2);
+  border-radius:var(--r-xs);
+  color:var(--t3);
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:12px;
+  font-weight:500;
+  padding:8px 10px;
+  cursor:pointer;
+  transition:all var(--tx);
+  text-align:center;
+  min-width:60px;
+}
+.oa:hover{
+  border-color:var(--b3);
+  color:var(--t1);
+  background:var(--s2);
+  transform:translateY(-1px);
+}
+.oa:active{transform:translateY(0)}
+.oa.accent{
+  border-color:rgba(232,255,71,0.22);
+  color:var(--a);
+  background:var(--a-subtle);
+}
+.oa.accent:hover{
+  background:rgba(232,255,71,0.12);
+  border-color:rgba(232,255,71,0.35);
+}
+.oa.edit-active{
+  border-color:rgba(59,158,255,0.35);
+  color:var(--blue);
+  background:var(--blue-bg);
+}
+ 
+/* ============================================
+   FULL PANELS (Brand / History)
+   ============================================ */
+.full-panel{
+  display:none;
+  padding:28px;
+  grid-column:1/-1;
+  overflow-y:auto;
+}
 .full-panel.show{display:block}
-.panel-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
-.panel-title{font-family:'Instrument Serif',serif;font-size:24px;font-style:italic}
-.back-btn{background:transparent;border:0.5px solid var(--b2);border-radius:var(--rxs);color:var(--t2);font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:500;padding:8px 14px;cursor:pointer;transition:all 0.13s}
-.back-btn:hover{border-color:var(--b3);color:var(--t1)}
-.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-.brand-form{display:flex;flex-direction:column;gap:14px}
-.save-brand{width:100%;background:var(--a);color:#0C0C0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;padding:12px;border-radius:var(--rsm);border:none;cursor:pointer;transition:all 0.15s;margin-top:6px}
-.save-brand:hover{background:var(--a2)}
-.brand-preview{background:var(--s2);border:0.5px solid var(--b2);border-radius:var(--r);padding:22px}
-.bp-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--t4);margin-bottom:16px}
-.bp-item{display:flex;gap:12px;padding:12px 0;border-bottom:0.5px solid var(--b1)}
+.panel-hd{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:28px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--b1);
+}
+.panel-title{
+  font-family:'Instrument Serif',serif;
+  font-size:26px;
+  font-style:italic;
+  color:var(--t1);
+  letter-spacing:-0.3px;
+}
+.back-btn{
+  background:transparent;
+  border:1px solid var(--b2);
+  border-radius:var(--r-xs);
+  color:var(--t2);
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:12px;
+  font-weight:500;
+  padding:8px 16px;
+  cursor:pointer;
+  transition:all var(--tx);
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.back-btn:hover{
+  border-color:var(--b3);
+  color:var(--t1);
+  background:var(--s2);
+  transform:translateX(-2px);
+}
+ 
+/* Brand panel */
+.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.brand-form{display:flex;flex-direction:column;gap:16px}
+.brand-section-title{
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0.8px;
+  text-transform:uppercase;
+  color:var(--t3);
+  margin-bottom:4px;
+}
+.save-brand{
+  width:100%;
+  background:var(--a);
+  color:#0C0C0E;
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:700;
+  font-size:14px;
+  padding:13px;
+  border-radius:var(--r-md);
+  border:none;
+  cursor:pointer;
+  transition:all var(--tx-md);
+  margin-top:6px;
+  letter-spacing:0.1px;
+}
+.save-brand:hover{
+  background:var(--a2);
+  transform:translateY(-1px);
+  box-shadow:0 4px 16px rgba(232,255,71,0.2);
+}
+ 
+.brand-preview{
+  background:var(--s1);
+  border:1px solid var(--b2);
+  border-radius:var(--r);
+  padding:24px;
+}
+.bp-label{
+  font-size:9.5px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:var(--t4);
+  font-weight:600;
+  margin-bottom:20px;
+}
+.bp-item{
+  display:flex;
+  gap:14px;
+  padding:14px 0;
+  border-bottom:1px solid var(--b1);
+  align-items:flex-start;
+}
 .bp-item:last-child{border-bottom:none}
-.bp-ic{font-size:14px;flex-shrink:0;margin-top:1px}
-.bp-name{font-size:13px;font-weight:500;margin-bottom:3px}
-.bp-desc{font-size:12px;color:var(--t3);font-weight:300;line-height:1.5}
-.hist-empty{text-align:center;padding:60px;color:var(--t4);font-style:italic;font-size:14px}
-.hist-item{background:var(--s2);border:0.5px solid var(--b1);border-radius:var(--r);padding:16px;margin-bottom:8px;cursor:pointer;transition:all 0.13s}
-.hist-item:hover{border-color:var(--b2);background:var(--s3)}
-.hi-meta{display:flex;justify-content:space-between;margin-bottom:8px}
-.hi-tool{font-size:12px;color:var(--t2);font-weight:500}
+.bp-ic-wrap{
+  width:32px;
+  height:32px;
+  border-radius:var(--r-xs);
+  background:var(--a-subtle);
+  border:1px solid rgba(232,255,71,0.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  margin-top:1px;
+}
+.bp-ic-wrap svg{width:14px;height:14px;stroke:var(--a)}
+.bp-name{font-size:13px;font-weight:500;margin-bottom:4px;color:var(--t1)}
+.bp-desc{font-size:12px;color:var(--t3);font-weight:300;line-height:1.6}
+ 
+/* History panel */
+.hist-empty{
+  text-align:center;
+  padding:60px 20px;
+  color:var(--t4);
+  font-size:14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+}
+.hist-empty svg{width:32px;height:32px;stroke:var(--b3);opacity:0.5}
+.hist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.hist-item{
+  background:var(--s1);
+  border:1px solid var(--b1);
+  border-radius:var(--r-md);
+  padding:16px 18px;
+  cursor:pointer;
+  transition:all var(--tx-md);
+}
+.hist-item:hover{
+  border-color:var(--b2);
+  background:var(--s2);
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-md);
+}
+.hi-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.hi-tool{
+  font-size:12px;
+  color:var(--t2);
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.hi-tool-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--a);flex-shrink:0;
+}
 .hi-time{font-size:11px;color:var(--t4)}
-.hi-prev{font-size:12.5px;color:var(--t2);line-height:1.6;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.hi-prev{
+  font-size:12.5px;
+  color:var(--t3);
+  line-height:1.6;
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  font-weight:300;
+}
+ 
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
-@media(max-width:800px){.layout{grid-template-columns:1fr}.sb{display:none}.content{grid-template-columns:1fr}.out-panel{display:none}.brand-grid{grid-template-columns:1fr}.fr{grid-template-columns:1fr}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.out-body:not(.empty){animation:fadeIn 0.25s ease}
+ 
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+  .live-dot{animation:none}
+}
+ 
+/* ============================================
+   SCROLLBARS
+   ============================================ */
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--b3)}
+ 
+/* ============================================
+   MOBILE
+   ============================================ */
+@media(max-width:800px){
+  .layout{grid-template-columns:1fr}
+  .sb{display:none}
+  .content{grid-template-columns:1fr}
+  .out-panel{display:none}
+  .brand-grid{grid-template-columns:1fr}
+  .fr{grid-template-columns:1fr}
+  .hist-grid{grid-template-columns:1fr}
+  .full-panel{padding:20px}
+  .topbar{padding:12px 16px}
+  .inp{padding:16px}
+}
 </style>
 </head>
 <body>
 <div class="layout">
+ 
+<!-- ============ SIDEBAR ============ -->
 <div class="sb">
   <div class="sb-top">
-    <div class="logo">Laramys<em>.</em>AI</div>
+    <div class="logo"><span class="logo-word">Laramys</span><em>.</em><span class="logo-word">AI</span></div>
     <div class="logo-sub">Business Operations Suite</div>
   </div>
+ 
   <div class="brand-btn" onclick="showBrand()">
     <div class="bb-label">Your brand</div>
     <div class="bb-name empty" id="brandName">Set up your brand →</div>
   </div>
+ 
   <div class="sb-section">Generate</div>
   <div id="navList"></div>
-  <div class="sb-section" style="margin-top:4px">Manage</div>
+ 
+  <div class="sb-section" style="margin-top:6px">Manage</div>
   <div class="nav-item" onclick="showHistory()">
-    <div class="ni-ic">🗂</div>
+    <div class="ni-ic">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M19 11H7M19 11l-4-4M19 11l-4 4M5 11V7M5 17v-2"/></svg>
+    </div>
     <div class="ni-txt">Saved outputs</div>
     <div class="ni-badge" id="savedBadge" style="display:none">0</div>
   </div>
+ 
   <div class="sb-footer">
     <div class="sb-stats">
       <div class="ss-item"><div class="ss-n" id="sc1">0</div><div class="ss-l">Generated</div></div>
@@ -138,54 +820,94 @@ select.fi{cursor:pointer}
       <div class="ss-item"><div class="ss-n">17</div><div class="ss-l">Tools</div></div>
     </div>
     <div class="live-row"><div class="live-dot"></div>Claude AI — live</div>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <button onclick="showPricing()" style="background:none;border:none;font-family:'Bricolage Grotesque',sans-serif;font-size:10.5px;color:rgba(240,237,230,0.3);cursor:pointer;padding:0;transition:color 0.14s;text-align:left" onmouseover="this.style.color='rgba(232,255,71,0.7)'" onmouseout="this.style.color='rgba(240,237,230,0.3)'">Pricing</button>
+      <a href="mailto:hello@laramyslabs.co.uk" style="font-size:10.5px;color:rgba(240,237,230,0.3);text-decoration:none;transition:color 0.14s" onmouseover="this.style.color='rgba(240,237,230,0.6)'" onmouseout="this.style.color='rgba(240,237,230,0.3)'">Contact</a>
+      <a href="https://laramyslabs.co.uk" target="_blank" rel="noopener" style="font-size:10.5px;color:rgba(240,237,230,0.3);text-decoration:none;transition:color 0.14s" onmouseover="this.style.color='rgba(240,237,230,0.6)'" onmouseout="this.style.color='rgba(240,237,230,0.3)'">Laramys Labs</a>
+    </div>
   </div>
 </div>
+ 
+<!-- ============ MAIN ============ -->
 <div class="main">
   <div class="topbar">
     <div class="tb-left">
       <div class="tb-ic" id="tbIc"></div>
-      <div><div class="tb-name" id="tbName"></div><div class="tb-sub" id="tbSub"></div></div>
+      <div>
+        <div class="tb-name" id="tbName"></div>
+        <div class="tb-sub" id="tbSub"></div>
+      </div>
     </div>
     <div class="tb-right">
       <div class="ai-badge"><div class="live-dot"></div>AI ready</div>
       <div class="brand-badge" id="bbadge"></div>
     </div>
   </div>
+ 
   <div class="content" id="contentGrid">
+ 
+    <!-- Input -->
     <div class="inp" id="inp"></div>
+ 
+    <!-- Output -->
     <div class="out-panel" id="outPanel">
       <div class="out-top">
-        <div class="out-label"><div class="out-dot" id="odot"></div><span id="olabel">Output</span></div>
-        <div class="edit-hint" id="editHint">✏️ Click anywhere in the output to edit</div>
+        <div class="out-label">
+          <div class="out-dot" id="odot"></div>
+          <span id="olabel">Output</span>
+        </div>
+        <div class="edit-hint" id="editHint">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Click anywhere to edit
+        </div>
       </div>
       <div class="out-body empty" id="outbody" contenteditable="false">
-        <div class="empty-ic">✦</div>
+        <div class="empty-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l3 3"/></svg>
+        </div>
         <div>Fill in the fields and generate.<br>Your output appears here.</div>
       </div>
       <div class="out-actions">
-        <button class="oa accent" onclick="saveOut()">Save</button>
-        <button class="oa edit-active" id="editBtn" onclick="toggleEdit()">Edit</button>
-        <button class="oa" onclick="copyOut()">Copy</button>
-        <button class="oa" onclick="clearOut()">Clear</button>
+        <button class="oa accent" onclick="saveOut()" aria-label="Save output">Save</button>
+        <button class="oa edit-active" id="editBtn" onclick="toggleEdit()" aria-label="Edit output">Edit</button>
+        <button class="oa" onclick="copyOut()" aria-label="Copy output to clipboard">Copy</button>
+        <button class="oa" onclick="clearOut()" aria-label="Clear output">Clear</button>
       </div>
     </div>
+ 
+    <!-- History panel -->
     <div class="full-panel" id="histPanel">
       <div class="panel-hd">
         <div class="panel-title">Saved outputs</div>
-        <button class="back-btn" onclick="backToTool()">← Back</button>
+        <button class="back-btn" onclick="backToTool()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Back
+        </button>
       </div>
       <div id="histList"></div>
     </div>
+ 
+    <!-- Brand panel -->
     <div class="full-panel" id="brandPanel">
       <div class="panel-hd">
         <div class="panel-title">Brand settings</div>
-        <button class="back-btn" onclick="backToTool()">← Back</button>
+        <button class="back-btn" onclick="backToTool()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Back
+        </button>
       </div>
       <div class="brand-grid">
         <div class="brand-form">
-          <div class="fg"><label class="fl">Business name</label><input class="fi" id="b_name" placeholder="e.g. Davies Plumbing Ltd" type="text"></div>
-          <div class="fg"><label class="fl">Industry / trade</label><input class="fi" id="b_ind" placeholder="e.g. plumbing, roofing, estate agency" type="text"></div>
-          <div class="fg"><label class="fl">Tone of voice</label>
+          <div class="fg">
+            <label class="fl">Business name</label>
+            <input class="fi" id="b_name" placeholder="e.g. Davies Plumbing Ltd" type="text">
+          </div>
+          <div class="fg">
+            <label class="fl">Industry / trade</label>
+            <input class="fi" id="b_ind" placeholder="e.g. plumbing, roofing, estate agency" type="text">
+          </div>
+          <div class="fg">
+            <label class="fl">Tone of voice</label>
             <select class="fi" id="b_tone">
               <option value="">Choose a tone...</option>
               <option>professional and warm</option>
@@ -195,122 +917,165 @@ select.fi{cursor:pointer}
               <option>relaxed and human</option>
             </select>
           </div>
-          <div class="fg"><label class="fl">Tagline (optional)</label><input class="fi" id="b_tag" placeholder="e.g. Quality work, every time" type="text"></div>
+          <div class="fg">
+            <label class="fl">Tagline (optional)</label>
+            <input class="fi" id="b_tag" placeholder="e.g. Quality work, every time" type="text">
+          </div>
           <button class="save-brand" onclick="saveBrand()">Save brand settings</button>
         </div>
         <div class="brand-preview">
           <div class="bp-label">What this unlocks</div>
-          <div class="bp-item"><div class="bp-ic">✦</div><div><div class="bp-name">Auto-branded outputs</div><div class="bp-desc">Your company name in every document — no retyping</div></div></div>
-          <div class="bp-item"><div class="bp-ic">✦</div><div><div class="bp-name">Industry-tuned language</div><div class="bp-desc">The AI speaks your sector's language automatically</div></div></div>
-          <div class="bp-item"><div class="bp-ic">✦</div><div><div class="bp-name">Consistent tone</div><div class="bp-desc">Every output sounds like you — every single time</div></div></div>
-          <div class="bp-item"><div class="bp-ic">✦</div><div><div class="bp-name">Applies to all 17 tools</div><div class="bp-desc">Every document, every time — fully branded</div></div></div>
+          <div class="bp-item">
+            <div class="bp-ic-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><div class="bp-name">Auto-branded outputs</div><div class="bp-desc">Your company name in every document — no retyping</div></div>
+          </div>
+          <div class="bp-item">
+            <div class="bp-ic-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+            <div><div class="bp-name">Industry-tuned language</div><div class="bp-desc">The AI speaks your sector's language automatically</div></div>
+          </div>
+          <div class="bp-item">
+            <div class="bp-ic-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <div><div class="bp-name">Consistent tone</div><div class="bp-desc">Every output sounds like you — every single time</div></div>
+          </div>
+          <div class="bp-item">
+            <div class="bp-ic-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+            <div><div class="bp-name">Applies to all 17 tools</div><div class="bp-desc">Every document, every time — fully branded</div></div>
+          </div>
         </div>
       </div>
     </div>
+ 
   </div>
 </div>
 </div>
+ 
 <script>
+// ============ TOOL ICONS (SVG) ============
+const ICONS = {
+  quote:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+  invoice:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+  response:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+  brief:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`,
+  report:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+  outreach:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+  onboard:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  jobad:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+  sop:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+  social:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
+  contract:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="8" y1="17" x2="10" y2="17"/></svg>`,
+  pricerise:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+  complaint:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>`,
+  minutes:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+  bio:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  testimonial:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  grant:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>`
+};
+ 
+// ============ TOOLS DATA ============
 const TOOLS=[
-{id:'quote',n:'Quote generator',s:'Professional proposals in seconds',ic:'📄',bg:'rgba(232,255,71,0.1)',
+{id:'quote',n:'Quote generator',s:'Professional proposals in seconds',ic:'quote',bg:'rgba(232,255,71,0.08)',
 f:[{id:'biz',l:'Your business name',p:'e.g. Davies Roofing Ltd',t:'i'},{id:'client',l:'Client name',p:'e.g. Mr & Mrs Thompson',t:'i'},{id:'service',l:'Service / project',p:'e.g. Full roof replacement, 3-bed semi',t:'ta',r:2},{id:'scope',l:'Scope of works',p:'e.g. Strip tiles, new felt, battens, ridge work...',t:'ta',r:3},{id:'price',l:'Quote value (£)',p:'e.g. 4500',t:'i'},{id:'deposit',l:'Deposit required',p:'e.g. 50% upfront, £500 on booking',t:'i'},{id:'tl',l:'Estimated timeline',p:'e.g. 2–3 days',t:'i'},{id:'terms',l:'Payment terms',p:'e.g. Balance on completion, 14 days invoice',t:'i'}],
 sys:`You are an elite business proposal writer. Create a polished, client-ready quote. Use clean section titles (no markdown hashes). Sections: Overview, Scope of Works, What's Included, Your Investment (include deposit and payment terms), Timeline, Why Choose Us, Terms & Next Steps. Professional but warm. British English. Max 450 words.`,
 p:(f,b)=>`Business: ${b.name||f.biz||'[Business]'}\nTone: ${b.tone||'professional and warm'}\nClient: ${f.client||'[Client]'}\nService: ${f.service}\nScope: ${f.scope}\nValue: £${f.price||'TBC'}\nDeposit: ${f.deposit||'TBC'}\nTimeline: ${f.tl||'TBC'}\nPayment terms: ${f.terms||'Balance on completion'}\n\nWrite the complete quote, ready to send.`},
-
-{id:'invoice',n:'Invoice generator',s:'Professional invoices in seconds',ic:'🧾',bg:'rgba(232,255,71,0.1)',
+ 
+{id:'invoice',n:'Invoice generator',s:'Professional invoices in seconds',ic:'invoice',bg:'rgba(232,255,71,0.08)',
 f:[{id:'biz',l:'Your business name',p:'e.g. Davies Roofing Ltd',t:'i'},{id:'bizaddr',l:'Your address',p:'e.g. 14 High Street, Barnstaple, EX31 1AA',t:'i'},{id:'client',l:'Client name & address',p:'e.g. Mr J Thompson, 22 Oak Lane, Exeter',t:'i'},{id:'invnum',l:'Invoice number',p:'e.g. INV-0042',t:'i'},{id:'works',l:'Works completed',p:'e.g. Full roof replacement including materials and labour',t:'ta',r:2},{id:'amount',l:'Total amount (£)',p:'e.g. 4500',t:'i'},{id:'deposit',l:'Deposit already paid (£)',p:'e.g. 2250 or leave blank',t:'i'},{id:'due',l:'Payment due date',p:'e.g. 14 days from invoice date',t:'i'}],
 sys:`You are a professional invoice writer. Create a clear, professional invoice document. Include: Invoice header with business and client details, invoice number and date, itemised works completed, subtotal, any deposit already paid, balance due, payment terms, payment details section (left blank for them to fill in bank details), and a thank you note. Clean, professional, British English.`,
 p:(f,b)=>`Business: ${b.name||f.biz}\nBusiness address: ${f.bizaddr}\nClient: ${f.client}\nInvoice number: ${f.invnum||'INV-001'}\nWorks: ${f.works}\nTotal: £${f.amount}\nDeposit paid: £${f.deposit||'0'}\nBalance due: £${f.deposit?(parseFloat(f.amount||0)-parseFloat(f.deposit||0)):f.amount}\nPayment due: ${f.due||'14 days'}\n\nGenerate the full invoice document.`},
-
-{id:'response',n:'Customer response',s:'Perfect replies to any message',ic:'💬',bg:'rgba(255,184,0,0.1)',
+ 
+{id:'response',n:'Customer response',s:'Perfect replies to any message',ic:'response',bg:'rgba(255,184,0,0.08)',
 f:[{id:'biz',l:'Your business',p:'e.g. Premier Plumbing Ltd',t:'i'},{id:'plat',l:'Platform',p:'e.g. Google Reviews, email, Facebook',t:'i'},{id:'type',l:'Type of message',p:'e.g. 1-star review, complaint, enquiry',t:'i'},{id:'msg',l:'Customer message or review',p:'Paste the full message here...',t:'ta',r:4},{id:'ctx',l:'Your context (optional)',p:'e.g. Job completed correctly, customer changed mind...',t:'ta',r:2}],
 sys:`You are a senior customer relations expert. Write professional, empathetic, brand-safe responses. For negative reviews: acknowledge warmly, address the point, invite offline resolution. Never argue. British English.`,
 p:(f,b)=>`Business: ${b.name||f.biz}\nTone: ${b.tone||'professional and warm'}\nPlatform: ${f.plat}\nType: ${f.type}\nMessage: "${f.msg}"\nContext: ${f.ctx||'none'}\n\nWrite the full response, ready to post or send.`},
-
-{id:'brief',n:'Job brief builder',s:'Rough notes into clear project docs',ic:'📋',bg:'rgba(0,201,167,0.1)',
+ 
+{id:'brief',n:'Job brief builder',s:'Rough notes into clear project docs',ic:'brief',bg:'rgba(0,201,167,0.08)',
 f:[{id:'co',l:'Your company',p:'e.g. Premier Groundworks Ltd',t:'i'},{id:'cl',l:'Client name',p:'e.g. Mr & Mrs Harris',t:'i'},{id:'jt',l:'Job type',p:'e.g. Block paving driveway, full rewire',t:'i'},{id:'notes',l:'Raw notes from site visit or call',p:'Dump everything here — rough is fine...',t:'ta',r:5},{id:'start',l:'Estimated start date',p:'e.g. Week of 5th May',t:'i'}],
 sys:`You are an expert project coordinator. Transform rough notes into a polished job brief. Sections: Project Overview, Client Details, Scope of Work (bulleted), Materials, Access & Site Notes, Timeline, Special Considerations, Sign-off. British English.`,
 p:(f,b)=>`Company: ${b.name||f.co}\nClient: ${f.cl}\nJob: ${f.jt}\nNotes: ${f.notes}\nStart: ${f.start||'TBC'}\n\nGenerate the complete job brief.`},
-
-{id:'report',n:'Report summariser',s:'Raw data into executive summaries',ic:'📊',bg:'rgba(124,110,245,0.1)',
+ 
+{id:'report',n:'Report summariser',s:'Raw data into executive summaries',ic:'report',bg:'rgba(124,110,245,0.08)',
 f:[{id:'org',l:'Business / team',p:'e.g. Sales Team, Davies Group',t:'i'},{id:'per',l:'Report period',p:'e.g. Week ending 12 May 2025',t:'i'},{id:'aud',l:'Audience',p:'e.g. MD, board, department head',t:'i'},{id:'data',l:'Raw data, notes or figures',p:'Paste anything — KPIs, numbers, notes...',t:'ta',r:5},{id:'flags',l:'Highlights or concerns',p:'e.g. Sales up 18%, concern about delays',t:'ta',r:2}],
 sys:`You are a senior business analyst. Transform raw data into a polished executive report. Sections: Executive Summary, Key Highlights (bullets), Performance vs Goals, Challenges & Actions, Looking Ahead. Confident, board-ready. British English.`,
 p:(f,b)=>`Business: ${b.name||f.org}\nPeriod: ${f.per}\nAudience: ${f.aud}\nData: ${f.data}\nFlags: ${f.flags||'none'}\n\nGenerate the full executive summary.`},
-
-{id:'outreach',n:'Cold outreach writer',s:'Emails that land meetings',ic:'✉️',bg:'rgba(59,158,255,0.1)',
+ 
+{id:'outreach',n:'Cold outreach writer',s:'Emails that land meetings',ic:'outreach',bg:'rgba(59,158,255,0.08)',
 f:[{id:'sndr',l:'Your name & company',p:'e.g. Will, Laramys Labs',t:'i'},{id:'pros',l:'Prospect type',p:'e.g. roofing company owner, estate agent',t:'i'},{id:'pain',l:'Their specific pain point',p:'e.g. spending evenings writing quotes',t:'i'},{id:'offer',l:'Your offer',p:'e.g. AI tool that writes quotes in 10 seconds',t:'i'},{id:'cta',l:'Call to action',p:'e.g. 15-min call, free demo',t:'i'}],
 sys:`You are a world-class B2B copywriter. Write cold outreach emails that get replies. Pain-first. No fluff. Under 130 words. Subject line + body. British English.`,
 p:(f,b)=>`Sender: ${b.name||f.sndr}\nProspect: ${f.pros}\nPain: ${f.pain}\nOffer: ${f.offer}\nCTA: ${f.cta}\n\nWrite the subject line and email body.`},
-
-{id:'onboard',n:'Onboarding doc',s:'Welcome packs that set people up',ic:'👋',bg:'rgba(107,203,95,0.1)',
+ 
+{id:'onboard',n:'Onboarding doc',s:'Welcome packs that set people up',ic:'onboard',bg:'rgba(107,203,95,0.08)',
 f:[{id:'co',l:'Company name',p:'e.g. Smith & Sons Ltd',t:'i'},{id:'type',l:'Type',p:'e.g. new client, new employee, new contractor',t:'i'},{id:'person',l:'Who is being onboarded',p:'e.g. Sarah — new Office Manager',t:'i'},{id:'det',l:'Key details',p:'e.g. start date, role, tools, first week plan...',t:'ta',r:4},{id:'tone',l:'Tone',p:'e.g. warm and welcoming, professional',t:'i'}],
 sys:`You are an HR expert. Create a polished onboarding document. Sections: Welcome, About the business, Role overview, First week steps, Key contacts, Tools & systems, Important notes, Next steps. Warm, structured. British English.`,
 p:(f,b)=>`Company: ${b.name||f.co}\nType: ${f.type}\nPerson: ${f.person}\nDetails: ${f.det}\nTone: ${f.tone||b.tone||'warm and welcoming'}\n\nGenerate the full onboarding document.`},
-
-{id:'jobad',n:'Job ad writer',s:'Attract the right people',ic:'📢',bg:'rgba(232,86,122,0.1)',
+ 
+{id:'jobad',n:'Job ad writer',s:'Attract the right people',ic:'jobad',bg:'rgba(232,86,122,0.08)',
 f:[{id:'co',l:'Company name',p:'e.g. Davies Electrical',t:'i'},{id:'role',l:'Job title',p:'e.g. Experienced Electrician',t:'i'},{id:'loc',l:'Location',p:'e.g. Barnstaple, Devon',t:'i'},{id:'sal',l:'Salary / rate',p:'e.g. £35–40k / £25/hr CIS',t:'i'},{id:'det',l:'Role details & requirements',p:'e.g. 3+ yrs experience, domestic & commercial...',t:'ta',r:4}],
 sys:`You are a specialist recruitment copywriter. Write job ads that attract quality candidates. Lead with what makes the role great. List real requirements. British English. Under 320 words.`,
 p:(f,b)=>`Company: ${b.name||f.co}\nRole: ${f.role}\nLocation: ${f.loc}\nSalary: ${f.sal}\nDetails: ${f.det}\n\nWrite a compelling job advert.`},
-
-{id:'sop',n:'SOP & training doc',s:'Processes your team can follow',ic:'📘',bg:'rgba(245,166,35,0.1)',
+ 
+{id:'sop',n:'SOP & training doc',s:'Processes your team can follow',ic:'sop',bg:'rgba(245,166,35,0.08)',
 f:[{id:'co',l:'Company name',p:'e.g. Premier Drainage Ltd',t:'i'},{id:'proc',l:'Process name',p:'e.g. How to handle a new customer enquiry',t:'i'},{id:'role',l:'Who is this for',p:'e.g. office team, new starters',t:'i'},{id:'steps',l:'Rough steps or notes',p:'e.g. Answer phone, take name, check diary...',t:'ta',r:5}],
 sys:`You are a business operations expert. Turn rough notes into a clear SOP. Sections: Purpose, Who this applies to, Step-by-step instructions (numbered), Key rules, Common mistakes, Sign-off. British English.`,
 p:(f,b)=>`Company: ${b.name||f.co}\nProcess: ${f.proc}\nFor: ${f.role}\nNotes: ${f.steps}\n\nGenerate the full SOP document.`},
-
-{id:'social',n:'Social media content',s:'Posts that stop the scroll',ic:'📱',bg:'rgba(59,158,255,0.1)',
+ 
+{id:'social',n:'Social media content',s:'Posts that stop the scroll',ic:'social',bg:'rgba(59,158,255,0.08)',
 f:[{id:'biz',l:'Business name',p:'e.g. Davies Roofing',t:'i'},{id:'plat',l:'Platform',p:'e.g. Facebook, Instagram, LinkedIn',t:'i'},{id:'topic',l:'What are you posting about',p:'e.g. just finished a slate roof in Barnstaple',t:'ta',r:2},{id:'goal',l:'Goal',p:'e.g. show expertise, get enquiries',t:'i'},{id:'num',l:'Number of posts',p:'e.g. 3, 5',t:'i'}],
 sys:`You are a social media expert for local businesses. Write posts that feel genuinely human. Specific over generic. Tell the story. Call to action. Hashtags. British English.`,
 p:(f,b)=>`Business: ${b.name||f.biz}\nTone: ${b.tone||'authentic'}\nPlatform: ${f.plat}\nTopic: ${f.topic}\nGoal: ${f.goal}\nPosts: ${f.num||3}\n\nWrite the posts, clearly separated.`},
-
-{id:'contract',n:'T&Cs / contract writer',s:'Terms that protect your business',ic:'📝',bg:'rgba(124,110,245,0.1)',
+ 
+{id:'contract',n:'T&Cs / contract writer',s:'Terms that protect your business',ic:'contract',bg:'rgba(124,110,245,0.08)',
 f:[{id:'co',l:'Company name',p:'e.g. Smith & Sons Ltd',t:'i'},{id:'svc',l:'Service type',p:'e.g. roofing, landscaping, web design',t:'i'},{id:'pts',l:'Key terms to include',p:'e.g. 50% deposit, 14-day payment, no liability for pre-existing damage...',t:'ta',r:4},{id:'style',l:'Style',p:'e.g. plain English, formal',t:'i'}],
 sys:`You are a legal document specialist. Create professional T&Cs. Sections: Parties, Services, Payment Terms, Cancellation, Liability, Dispute Resolution, Governing Law (England & Wales). Plain English. Recommend legal review. British English.`,
 p:(f,b)=>`Company: ${b.name||f.co}\nService: ${f.svc}\nKey terms: ${f.pts}\nStyle: ${f.style||'plain English'}\n\nGenerate the full T&Cs.`},
-
-{id:'pricerise',n:'Price increase letter',s:'Tell clients about price rises professionally',ic:'📈',bg:'rgba(232,255,71,0.1)',
-f:[{id:'biz',l:'Your business name',p:'e.g. Davies Plumbing Ltd',t:'i'},{id:'client',l:'Client name (or "Dear Customer")',p:'e.g. Mr Thompson, or Dear Customer',t:'i'},{id:'oldprice',l:'Current price / rate',p:'e.g. £85/hr, £1,200/month retainer',t:'i'},{id:'newprice',l:'New price / rate',p:'e.g. £95/hr, £1,350/month',t:'i'},{id:'date',l:'Effective from date',p:'e.g. 1st June 2025',t:'i'},{id:'reason',l:'Brief reason (optional)',p:'e.g. rising material costs, increased overheads',t:'i'}],
+ 
+{id:'pricerise',n:'Price increase letter',s:'Tell clients about price rises professionally',ic:'pricerise',bg:'rgba(232,255,71,0.08)',
+f:[{id:'biz',l:'Your business name',p:'e.g. Davies Plumbing Ltd',t:'i'},{id:'client',l:'Client name',p:'e.g. Mr Thompson, or Dear Customer',t:'i'},{id:'oldprice',l:'Current price / rate',p:'e.g. £85/hr, £1,200/month retainer',t:'i'},{id:'newprice',l:'New price / rate',p:'e.g. £95/hr, £1,350/month',t:'i'},{id:'date',l:'Effective from date',p:'e.g. 1st June 2025',t:'i'},{id:'reason',l:'Brief reason (optional)',p:'e.g. rising material costs, increased overheads',t:'i'}],
 sys:`You are a professional business writer. Write a price increase letter that is warm, honest, and maintains the client relationship. Acknowledge the increase, explain briefly, emphasise the value they receive, give plenty of notice, thank them for their loyalty. Professional but human. British English.`,
 p:(f,b)=>`Business: ${b.name||f.biz}\nClient: ${f.client}\nCurrent price: ${f.oldprice}\nNew price: ${f.newprice}\nEffective from: ${f.date}\nReason: ${f.reason||'rising operational costs'}\n\nWrite the full price increase letter.`},
-
-{id:'complaint',n:'Complaint letter writer',s:'Chase suppliers and resolve disputes formally',ic:'⚖️',bg:'rgba(232,86,122,0.1)',
+ 
+{id:'complaint',n:'Complaint letter writer',s:'Chase suppliers and resolve disputes formally',ic:'complaint',bg:'rgba(232,86,122,0.08)',
 f:[{id:'sender',l:'Your name / company',p:'e.g. Will Smith, Davies Roofing Ltd',t:'i'},{id:'recipient',l:'Who you are complaining to',p:'e.g. ABC Supplies Ltd, Landlord name',t:'i'},{id:'issue',l:'What happened',p:'e.g. Delivered wrong materials twice, overcharged by £800...',t:'ta',r:3},{id:'impact',l:'Impact on your business',p:'e.g. Job delayed by 2 weeks, lost a client...',t:'ta',r:2},{id:'outcome',l:'What you want them to do',p:'e.g. Full refund, replacement goods, written apology',t:'i'}],
 sys:`You are a professional legal correspondence writer. Write a formal complaint letter that is firm, factual, and professional. Include: clear description of the issue, impact, what resolution is required, deadline for response, and appropriate closing. Firm but not aggressive. British English.`,
 p:(f,b)=>`From: ${b.name||f.sender}\nTo: ${f.recipient}\nIssue: ${f.issue}\nImpact: ${f.impact}\nRequired outcome: ${f.outcome}\n\nWrite the full formal complaint letter.`},
-
-{id:'minutes',n:'Meeting minutes & agenda',s:'Turn rough notes into structured minutes',ic:'📅',bg:'rgba(0,201,167,0.1)',
+ 
+{id:'minutes',n:'Meeting minutes & agenda',s:'Turn rough notes into structured minutes',ic:'minutes',bg:'rgba(0,201,167,0.08)',
 f:[{id:'co',l:'Company / team name',p:'e.g. Davies Group, Sales Team',t:'i'},{id:'date',l:'Meeting date',p:'e.g. Monday 13th May 2025',t:'i'},{id:'attendees',l:'Who attended',p:'e.g. Will (MD), Sarah (Sales), Tom (Ops)',t:'i'},{id:'agenda',l:'Topics discussed / rough notes',p:'Paste your rough notes here — anything goes...',t:'ta',r:5},{id:'type',l:'Document type',p:'e.g. meeting minutes, action list, agenda for next meeting',t:'i'}],
 sys:`You are a professional meeting coordinator. Transform rough notes into clean, structured meeting minutes or agenda. Include: Meeting details header, attendees, agenda items discussed, key decisions made, action points with owner and deadline, next meeting date if mentioned. Clear, professional, British English.`,
 p:(f,b)=>`Company: ${b.name||f.co}\nDate: ${f.date}\nAttendees: ${f.attendees}\nNotes: ${f.agenda}\nDocument type: ${f.type||'meeting minutes'}\n\nGenerate the full document.`},
-
-{id:'bio',n:'Business bio & about us',s:'Tell your story in a way that wins clients',ic:'🏢',bg:'rgba(107,203,95,0.1)',
+ 
+{id:'bio',n:'Business bio & about us',s:'Tell your story in a way that wins clients',ic:'bio',bg:'rgba(107,203,95,0.08)',
 f:[{id:'biz',l:'Business name',p:'e.g. Davies Roofing Ltd',t:'i'},{id:'trade',l:'What you do',p:'e.g. roofing and guttering in North Devon',t:'i'},{id:'founded',l:'When founded / experience',p:'e.g. Est. 2008, 15 years experience',t:'i'},{id:'story',l:'Your story / key facts',p:'e.g. family run, 500+ roofs completed, local team, free surveys...',t:'ta',r:3},{id:'audience',l:'Where will this be used',p:'e.g. website About page, Google profile, LinkedIn',t:'i'}],
 sys:`You are a professional copywriter specialising in local and trade businesses. Write a compelling business bio that builds trust, shows expertise, and makes the reader want to get in touch. Warm but professional. Specific over generic. British English.`,
 p:(f,b)=>`Business: ${b.name||f.biz}\nTrade/service: ${f.trade}\nExperience: ${f.founded}\nKey facts: ${f.story}\nFor use on: ${f.audience}\n\nWrite the full business bio.`},
-
-{id:'testimonial',n:'Case study & testimonial',s:'Turn happy clients into powerful proof',ic:'⭐',bg:'rgba(245,166,35,0.1)',
+ 
+{id:'testimonial',n:'Case study & testimonial',s:'Turn happy clients into powerful proof',ic:'testimonial',bg:'rgba(245,166,35,0.08)',
 f:[{id:'biz',l:'Your business name',p:'e.g. Davies Roofing Ltd',t:'i'},{id:'client',l:'Client name / type',p:'e.g. Mr Thompson, a homeowner in Exeter',t:'i'},{id:'job',l:'What you did',p:'e.g. Full roof replacement on a 4-bed detached',t:'i'},{id:'challenge',l:'The challenge or problem',p:'e.g. Old roof leaking, needed complete replacement before winter',t:'i'},{id:'result',l:'The result / outcome',p:'e.g. Completed in 3 days, client delighted, no issues since',t:'i'},{id:'quote',l:'Client quote (optional)',p:'e.g. "Brilliant job, would highly recommend"',t:'i'}],
 sys:`You are a professional copywriter. Write a compelling case study / testimonial that tells a story: problem, solution, result. Make it feel real and specific. Include the client quote naturally if provided. End with a subtle call to action. British English.`,
 p:(f,b)=>`Business: ${b.name||f.biz}\nClient: ${f.client}\nJob: ${f.job}\nChallenge: ${f.challenge}\nResult: ${f.result}\nClient quote: ${f.quote||'none'}\n\nWrite the full case study.`},
-
-{id:'grant',n:'Grant & funding application',s:'Write applications that actually get funded',ic:'💰',bg:'rgba(59,158,255,0.1)',
+ 
+{id:'grant',n:'Grant & funding application',s:'Write applications that actually get funded',ic:'grant',bg:'rgba(59,158,255,0.08)',
 f:[{id:'biz',l:'Business name',p:'e.g. Davies Roofing Ltd',t:'i'},{id:'grant',l:'Grant or fund name',p:'e.g. UKSPF, Innovate UK, local council grant',t:'i'},{id:'amount',l:'Amount applying for',p:'e.g. £5,000, £25,000',t:'i'},{id:'purpose',l:'What the money is for',p:'e.g. New equipment, training, expanding premises',t:'i'},{id:'impact',l:'Expected impact / outcome',p:'e.g. Create 2 new jobs, serve 50 more clients, reduce costs by 30%',t:'i'},{id:'about',l:'About the business',p:'e.g. 15 years trading, 8 employees, turnover £400k',t:'i'}],
 sys:`You are a professional grant writer with expertise in UK SME funding applications. Write a compelling, structured grant application that covers: business overview, project description, intended use of funds, expected outcomes and impact, how it aligns with the fund's objectives. Professional, evidence-focused, persuasive. British English.`,
 p:(f,b)=>`Business: ${b.name||f.biz}\nGrant: ${f.grant}\nAmount: £${f.amount}\nPurpose: ${f.purpose}\nExpected impact: ${f.impact}\nBusiness background: ${f.about}\n\nWrite the full grant application.`},
 ];
-
+ 
+// ============ STATE ============
 let cur=0,outTxt='',generated=0,saved=[],brand={name:'',ind:'',tone:'',tag:''},mode='tool',editing=false;
-
+ 
+// ============ INIT ============
 function init(){buildNav();setTool(0);}
-
+ 
+// ============ BUILD NAV ============
 function buildNav(){
   document.getElementById('navList').innerHTML=TOOLS.map((t,i)=>
     `<div class="nav-item${i===cur&&mode==='tool'?' on':''}" onclick="setTool(${i})">
-      <div class="ni-ic">${t.ic}</div>
+      <div class="ni-ic">${ICONS[t.ic]||''}</div>
       <div class="ni-txt">${t.n}</div>
     </div>`
   ).join('');
 }
-
+ 
+// ============ SET TOOL ============
 function setTool(i){
   mode='tool';cur=i;editing=false;
   document.getElementById('histPanel').classList.remove('show');
@@ -318,13 +1083,17 @@ function setTool(i){
   document.getElementById('inp').style.display='flex';
   document.getElementById('outPanel').style.display='flex';
   const t=TOOLS[i];
-  document.getElementById('tbIc').textContent=t.ic;
-  document.getElementById('tbIc').style.background=t.bg;
+  // Update topbar icon
+  const tbIc=document.getElementById('tbIc');
+  tbIc.innerHTML=ICONS[t.ic]||'';
+  tbIc.style.background=t.bg;
+  tbIc.style.borderColor=t.bg.replace('0.08','0.2');
   document.getElementById('tbName').textContent=t.n;
   document.getElementById('tbSub').textContent=t.s;
   renderInp();clearOut();buildNav();
 }
-
+ 
+// ============ RENDER INPUTS ============
 function renderInp(){
   const t=TOOLS[cur];
   let h='';
@@ -340,18 +1109,23 @@ function renderInp(){
       h+=`<div class="fg"><label class="fl">${f.l}</label><textarea class="fi" id="f_${f.id}" placeholder="${f.p}" rows="${f.r||3}"></textarea></div>`;
     }
   }
-  h+=`<button class="run-btn" id="runBtn" onclick="runTool()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>Generate with AI</button>`;
+  h+=`<button class="run-btn" id="runBtn" onclick="runTool()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    Generate with AI
+  </button>`;
   document.getElementById('inp').innerHTML=h;
 }
-
+ 
+// ============ RUN TOOL ============
 async function runTool(){
   const t=TOOLS[cur];
   const fv={};
   t.f.forEach(f=>{const el=document.getElementById('f_'+f.id);if(el)fv[f.id]=el.value.trim();});
   const btn=document.getElementById('runBtn');
   btn.disabled=true;
-  btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 0.9s linear infinite"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Generating...';
-  const dot=document.getElementById('odot');dot.classList.add('live');
+  btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 0.9s linear infinite"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Generating...`;
+  const dot=document.getElementById('odot');
+  dot.classList.add('live');
   document.getElementById('olabel').textContent='Generating...';
   document.getElementById('editHint').classList.remove('show');
   const ob=document.getElementById('outbody');
@@ -359,7 +1133,7 @@ async function runTool(){
   ob.contentEditable='false';editing=false;
   document.getElementById('editBtn').textContent='Edit';
   document.getElementById('editBtn').classList.remove('edit-active');
-  const sysTxt=t.sys+(brand.name?`\n\nBrand: Company: ${brand.name}. Industry: ${brand.ind||'general'}. Tone: ${brand.tone||'professional'}. Tagline: ${brand.tag||'n/a'}.`:'');
+  const sysTxt=t.sys+(brand.name?`\n\nBrand context — Company: ${brand.name}. Industry: ${brand.ind||'general'}. Tone: ${brand.tone||'professional'}. Tagline: ${brand.tag||'n/a'}.`:'');
   try{
     const res=await fetch('/.netlify/functions/generate',{
       method:'POST',
@@ -378,40 +1152,39 @@ async function runTool(){
   dot.classList.remove('live');
   document.getElementById('olabel').textContent='Output — ready';
   btn.disabled=false;
-  btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate again';
+  btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate again`;
 }
-
+ 
+// ============ EDIT ============
 function toggleEdit(){
   const ob=document.getElementById('outbody');
   const btn=document.getElementById('editBtn');
   if(!outTxt)return;
   editing=!editing;
   if(editing){
-    ob.contentEditable='true';
-    ob.focus();
-    btn.textContent='Done editing';
-    btn.classList.add('edit-active');
+    ob.contentEditable='true';ob.focus();
+    btn.textContent='Done';btn.classList.add('edit-active');
     document.getElementById('editHint').classList.remove('show');
   }else{
-    outTxt=ob.innerText;
-    ob.contentEditable='false';
-    btn.textContent='Edit';
-    btn.classList.remove('edit-active');
+    outTxt=ob.innerText;ob.contentEditable='false';
+    btn.textContent='Edit';btn.classList.remove('edit-active');
     document.getElementById('editHint').classList.add('show');
   }
 }
-
+ 
+// ============ SAVE ============
 function saveOut(){
   if(!outTxt)return;
-  if(editing){outTxt=document.getElementById('outbody').innerText;}
+  if(editing)outTxt=document.getElementById('outbody').innerText;
   const t=TOOLS[cur];
   saved.unshift({tool:t.n,ic:t.ic,txt:outTxt,time:new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}),date:new Date().toLocaleDateString('en-GB')});
   document.getElementById('sc2').textContent=saved.length;
   const sb=document.getElementById('savedBadge');sb.textContent=saved.length;sb.style.display='block';
-  const btn=event.target;btn.textContent='Saved ✓';
-  setTimeout(()=>btn.textContent='Save',2000);
+  const btn=event.target;btn.textContent='Saved ✓';btn.style.color='var(--green)';
+  setTimeout(()=>{btn.textContent='Save';btn.style.color='';},2000);
 }
-
+ 
+// ============ COPY ============
 function copyOut(){
   const txt=editing?document.getElementById('outbody').innerText:outTxt;
   if(!txt)return;
@@ -420,11 +1193,12 @@ function copyOut(){
     setTimeout(()=>btn.textContent='Copy',2000);
   });
 }
-
+ 
+// ============ CLEAR ============
 function clearOut(){
   outTxt='';editing=false;
   const ob=document.getElementById('outbody');
-  ob.innerHTML='<div class="empty-ic">✦</div><div>Fill in the fields and generate.<br>Your output appears here.</div>';
+  ob.innerHTML=`<div class="empty-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4M12 16h.01"/></svg></div><div>Fill in the fields and generate.<br>Your output appears here.</div>`;
   ob.classList.add('empty');ob.contentEditable='false';
   document.getElementById('odot').classList.remove('live');
   document.getElementById('olabel').textContent='Output';
@@ -432,42 +1206,49 @@ function clearOut(){
   document.getElementById('editBtn').textContent='Edit';
   document.getElementById('editBtn').classList.remove('edit-active');
   const btn=document.getElementById('runBtn');
-  if(btn){btn.disabled=false;btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate with AI';}
+  if(btn){btn.disabled=false;btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate with AI`;}
 }
-
+ 
+// ============ HISTORY ============
 function showHistory(){
   mode='hist';
   document.getElementById('histPanel').classList.add('show');
   document.getElementById('brandPanel').classList.remove('show');
   document.getElementById('inp').style.display='none';
   document.getElementById('outPanel').style.display='none';
-  document.getElementById('tbIc').textContent='🗂';
-  document.getElementById('tbIc').style.background='rgba(255,255,255,0.06)';
+  const tbIc=document.getElementById('tbIc');
+  tbIc.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 11H7M19 11l-4-4M19 11l-4 4M5 11V7M5 17v-2"/></svg>`;
+  tbIc.style.background='var(--s3)';tbIc.style.borderColor='var(--b2)';
   document.getElementById('tbName').textContent='Saved outputs';
   document.getElementById('tbSub').textContent="Everything you've generated and saved";
   const list=document.getElementById('histList');
-  if(!saved.length){list.innerHTML='<div class="hist-empty">Nothing saved yet.</div>';buildNav();return;}
-  list.innerHTML=saved.map((s,i)=>`<div class="hist-item" onclick="restoreItem(${i})"><div class="hi-meta"><div class="hi-tool">${s.ic} ${s.tool}</div><div class="hi-time">${s.date} · ${s.time}</div></div><div class="hi-prev">${s.txt.replace(/</g,'&lt;').substring(0,200)}...</div></div>`).join('');
+  if(!saved.length){
+    list.innerHTML='<div class="hist-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><div>Nothing saved yet.</div></div>';
+  }else{
+    list.innerHTML=`<div class="hist-grid">${saved.map((s,i)=>`<div class="hist-item" onclick="restoreItem(${i})"><div class="hi-meta"><div class="hi-tool"><div class="hi-tool-dot"></div>${s.tool}</div><div class="hi-time">${s.date} · ${s.time}</div></div><div class="hi-prev">${s.txt.replace(/</g,'&lt;').substring(0,200)}...</div></div>`).join('')}</div>`;
+  }
   buildNav();
 }
-
+ 
 function restoreItem(i){
   const s=saved[i];
   const ti=TOOLS.findIndex(t=>t.n===s.tool);
   if(ti>=0)setTool(ti);
   setTimeout(()=>{outTxt=s.txt;const ob=document.getElementById('outbody');ob.textContent=outTxt;ob.classList.remove('empty');document.getElementById('olabel').textContent='Restored';document.getElementById('editHint').classList.add('show');},60);
 }
-
+ 
 function backToTool(){setTool(cur);}
-
+ 
+// ============ BRAND ============
 function showBrand(){
   mode='brand';
   document.getElementById('brandPanel').classList.add('show');
   document.getElementById('histPanel').classList.remove('show');
   document.getElementById('inp').style.display='none';
   document.getElementById('outPanel').style.display='none';
-  document.getElementById('tbIc').textContent='⚙️';
-  document.getElementById('tbIc').style.background='rgba(255,255,255,0.06)';
+  const tbIc=document.getElementById('tbIc');
+  tbIc.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>`;
+  tbIc.style.background='var(--s3)';tbIc.style.borderColor='var(--b2)';
   document.getElementById('tbName').textContent='Brand settings';
   document.getElementById('tbSub').textContent='Set once — applied to every tool automatically';
   if(brand.name)document.getElementById('b_name').value=brand.name;
@@ -476,7 +1257,7 @@ function showBrand(){
   if(brand.tag)document.getElementById('b_tag').value=brand.tag;
   buildNav();
 }
-
+ 
 function saveBrand(){
   brand.name=document.getElementById('b_name').value.trim();
   brand.ind=document.getElementById('b_ind').value.trim();
@@ -486,11 +1267,102 @@ function saveBrand(){
   if(brand.name){el.textContent=brand.name;el.classList.remove('empty');}
   const bb=document.getElementById('bbadge');
   if(brand.name){bb.textContent=brand.name;bb.style.display='block';}
-  const btn=event.target;btn.textContent='Saved!';btn.style.background='#4ADE80';
-  setTimeout(()=>{btn.textContent='Save brand settings';btn.style.background='';setTool(cur);},1600);
+  const btn=event.target;
+  btn.textContent='Saved ✓';btn.style.background='var(--green)';btn.style.color='#0C0C0E';
+  setTimeout(()=>{btn.textContent='Save brand settings';btn.style.background='';btn.style.color='';setTool(cur);},1600);
 }
-
+ 
 init();
+ 
+// ============ PWA ============
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js')
+      .then(()=>console.log('SW registered'))
+      .catch(e=>console.log('SW error',e));
+  });
+}
+ 
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();deferredPrompt=e;
+  const banner=document.getElementById('installBanner');
+  if(banner)banner.style.display='flex';
+});
+function installApp(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(()=>{
+      deferredPrompt=null;
+      const banner=document.getElementById('installBanner');
+      if(banner)banner.style.display='none';
+    });
+  }
+}
+</script>
+ 
+<!-- Install banner -->
+<div id="installBanner" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--s2);border:1px solid rgba(232,255,71,0.25);border-radius:var(--r);padding:14px 20px;align-items:center;gap:14px;z-index:999;box-shadow:var(--shadow-lg);font-family:'Bricolage Grotesque',sans-serif;max-width:340px;width:90%">
+  <div style="width:36px;height:36px;border-radius:8px;background:var(--a-subtle);border:1px solid rgba(232,255,71,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="2"><path d="M12 2v13M5 9l7 7 7-7"/><path d="M5 20h14"/></svg>
+  </div>
+  <div style="flex:1">
+    <div style="font-size:13px;font-weight:600;color:var(--t1);margin-bottom:2px">Install Laramys.AI</div>
+    <div style="font-size:11px;color:var(--t3)">Add to home screen for quick access</div>
+  </div>
+  <button onclick="installApp()" style="background:var(--a);color:#0C0C0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:12px;padding:8px 14px;border-radius:var(--r-sm);border:none;cursor:pointer;white-space:nowrap">Install</button>
+  <button onclick="document.getElementById('installBanner').style.display='none'" style="background:transparent;border:none;color:var(--t4);cursor:pointer;font-size:18px;padding:4px;line-height:1;transition:color 0.1s" onmouseover="this.style.color='var(--t1)'" onmouseout="this.style.color='var(--t4)'">×</button>
+</div>
+ 
+ 
+<!-- Cookie banner -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#18181C;border-top:1px solid rgba(255,255,255,0.08);padding:13px 24px;align-items:center;justify-content:space-between;gap:16px;z-index:996;font-family:'Bricolage Grotesque',sans-serif;flex-wrap:wrap">
+  <div style="font-size:12px;color:rgba(240,237,230,0.5);flex:1;min-width:200px;line-height:1.6">
+    We use cookies to save your brand settings and generated outputs locally. No tracking or advertising.
+    <a href="https://laramysai.netlify.app/privacy" style="color:rgba(232,255,71,0.65);text-decoration:none;margin-left:4px">Privacy policy</a>
+  </div>
+  <div style="display:flex;gap:8px;flex-shrink:0;margin-top:4px">
+    <button onclick="declineCookies()" style="background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:6px;color:rgba(240,237,230,0.4);font-family:'Bricolage Grotesque',sans-serif;font-size:12px;padding:7px 14px;cursor:pointer;transition:all 0.14s" onmouseover="this.style.color='rgba(240,237,230,0.8)'" onmouseout="this.style.color='rgba(240,237,230,0.4)'">Decline</button>
+    <button onclick="acceptCookies()" style="background:#E8FF47;color:#0C0C0E;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:12px;padding:7px 18px;border-radius:6px;border:none;cursor:pointer">Accept</button>
+  </div>
+</div>
+ 
+<!-- Pricing modal -->
+<div id="pricingModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:1000;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#18181C;border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:36px;max-width:520px;width:92%;box-shadow:0 20px 60px rgba(0,0,0,0.6);position:relative">
+    <button onclick="document.getElementById('pricingModal').style.display='none'" style="position:absolute;top:16px;right:18px;background:none;border:none;color:rgba(240,237,230,0.3);font-size:20px;cursor:pointer;padding:4px;line-height:1" onmouseover="this.style.color='rgba(240,237,230,0.8)'" onmouseout="this.style.color='rgba(240,237,230,0.3)'">×</button>
+    <div style="font-family:'Instrument Serif',serif;font-size:26px;font-style:italic;color:#F0EDE6;margin-bottom:6px">Simple pricing</div>
+    <div style="font-size:13px;color:rgba(240,237,230,0.45);margin-bottom:28px">No contracts. Cancel any time.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#111114;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:22px">
+        <div style="font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(240,237,230,0.35);margin-bottom:10px;font-weight:600">Starter</div>
+        <div style="font-size:30px;font-weight:700;color:#F0EDE6;line-height:1;margin-bottom:4px">£197<span style="font-size:14px;font-weight:400;color:rgba(240,237,230,0.4)">/mo</span></div>
+        <div style="font-size:11px;color:rgba(240,237,230,0.35);margin-bottom:18px">Per business</div>
+        <div style="font-size:12px;color:rgba(240,237,230,0.55);line-height:2">All 17 tools<br>Brand settings<br>Unlimited generates<br>Email support</div>
+      </div>
+      <div style="background:#111114;border:1.5px solid rgba(232,255,71,0.3);border-radius:12px;padding:22px;position:relative;box-shadow:0 0 24px rgba(232,255,71,0.06)">
+        <div style="position:absolute;top:-10px;left:18px;background:#E8FF47;color:#0C0C0E;font-size:9px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.8px;text-transform:uppercase">Popular</div>
+        <div style="font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(232,255,71,0.5);margin-bottom:10px;font-weight:600">Growth</div>
+        <div style="font-size:30px;font-weight:700;color:#F0EDE6;line-height:1;margin-bottom:4px">£397<span style="font-size:14px;font-weight:400;color:rgba(240,237,230,0.4)">/mo</span></div>
+        <div style="font-size:11px;color:rgba(240,237,230,0.35);margin-bottom:18px">Per business</div>
+        <div style="font-size:12px;color:rgba(240,237,230,0.55);line-height:2">Everything in Starter<br>Priority support<br>Monthly strategy call<br>Custom tools on request</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;text-align:center">
+      <a href="mailto:hello@laramyslabs.co.uk" style="display:inline-block;background:#E8FF47;color:#0C0C0E;font-weight:700;font-size:14px;padding:12px 32px;border-radius:9px;text-decoration:none;transition:all 0.15s">Get in touch to start →</a>
+    </div>
+    <div style="margin-top:14px;text-align:center;font-size:11px;color:rgba(240,237,230,0.25)">Questions? Email hello@laramyslabs.co.uk</div>
+  </div>
+</div>
+ 
+<script>
+// Cookie consent
+function acceptCookies(){localStorage.setItem('laramys_cookies','accepted');document.getElementById('cookieBanner').style.display='none';}
+function declineCookies(){localStorage.setItem('laramys_cookies','declined');document.getElementById('cookieBanner').style.display='none';}
+function checkCookies(){if(!localStorage.getItem('laramys_cookies')){const b=document.getElementById('cookieBanner');b.style.display='flex';}}
+function showPricing(){document.getElementById('pricingModal').style.display='flex';}
+window.addEventListener('load',()=>setTimeout(checkCookies,1800));
 </script>
 </body>
 </html>
+ 
